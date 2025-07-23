@@ -1,0 +1,34 @@
+buildscript {
+    repositories {
+        gradlePluginPortal()
+        maven { url = uri("https://maven.aliyun.com/repository/public") }
+        google()
+    }
+    ext.kotlin_version = "1.9.22"
+    dependencies {
+        classpath "com.android.tools.build:gradle:8.3.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'org.jetbrains.kotlin:kotlin-serialization:2.0.0'
+        classpath 'com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin:2.0.0-1.0.23'
+    }
+}
+
+allprojects {
+    allprojects {
+        repositories {
+            gradlePluginPortal()
+            maven { url = uri("https://maven.aliyun.com/repository/public") }
+            mavenCentral()
+            google()
+        }
+        tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+            kotlinOptions {
+                jvmTarget = "17"
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

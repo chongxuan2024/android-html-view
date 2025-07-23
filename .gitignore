@@ -1,0 +1,8 @@
+/.gradle/
+/.idea/
+/gradle/
+/.kotlin/
+/app/build/
+/gradle-8.0-bin.zip
+/gradle.properties
+/gradlew

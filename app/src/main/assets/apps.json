@@ -1,0 +1,7 @@
+[
+  {
+    "appName": "天气应用",
+    "appIcon": "weather_icon.png",
+    "appFile": "weather.html"
+  }
+]

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HTML Viewer</string>
+    <string name="tab_hall">大厅</string>
+    <string name="tab_profile">个人信息</string>
+    <string name="hall_title">HTML应用大厅</string>
+    <string name="profile_title">个人信息</string>
+    <string name="user_name">用户名</string>
+    <string name="app_author">应用作者</string>
+    <string name="favorite_apps">收藏的应用</string>
+    <string name="no_favorites">暂无收藏</string>
+    <string name="add_to_favorites">添加到收藏</string>
+    <string name="remove_from_favorites">取消收藏</string>
+    <string name="loading">加载中...</string>
+    <string name="error_loading">加载失败</string>
+    <string name="back">返回</string>
+    <string name="refresh">刷新</string>
+    <string name="share">分享</string>
+    <string name="default_user_name">HTML应用爱好者</string>
+    <string name="default_author_name">HTML Viewer Team</string>
+    <string name="version_info">版本 1.0.0</string>
+    <string name="about_app">关于应用</string>
+    <string name="app_description">一个简单易用的HTML应用浏览器，支持本地HTML文件的展示和管理。</string>
+</resources>
