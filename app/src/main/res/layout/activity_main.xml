@@ -5,86 +5,135 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bg_game_main"
+    android:background="@color/cyber_black"
     tools:context=".MainActivity">
 
-    <!-- Game Style Header -->
+    <!-- Cyberpunk Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/bg_game_gradient_3"
-        android:padding="20dp"
-        android:elevation="8dp">
+        android:background="@drawable/neon_gradient_1"
+        android:padding="24dp"
+        android:elevation="12dp">
 
-        <!-- Game Title with Effects -->
+        <!-- Top Status Bar -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="20dp">
 
-            <TextView
+            <!-- App Title -->
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="🎮 HTML Game Center"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_white"
-                android:shadowColor="@color/game_bg_overlay"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="4" />
+                android:orientation="vertical">
 
-            <!-- Game Stats -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NEON"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/cyber_text_primary"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.2"
+                    android:shadowColor="@color/neon_cyan"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="8" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HTML ARCADE"
+                    android:textSize="14sp"
+                    android:textColor="@color/cyber_text_accent"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.1"
+                    android:layout_marginTop="-4dp" />
+
+            </LinearLayout>
+
+            <!-- Status Indicators -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@drawable/bg_game_gradient_1"
-                android:padding="8dp"
                 android:gravity="center">
 
-                <TextView
+                <!-- Connection Status -->
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="⭐"
-                    android:textSize="16sp"
-                    android:layout_marginEnd="4dp" />
+                    android:orientation="horizontal"
+                    android:background="@color/cyber_medium"
+                    android:padding="8dp"
+                    android:layout_marginEnd="12dp"
+                    android:gravity="center">
 
-                <TextView
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/neon_gradient_4"
+                        android:layout_marginEnd="6dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ONLINE"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/neon_green"
+                        android:fontFamily="monospace" />
+
+                </LinearLayout>
+
+                <!-- User Level -->
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Level 1"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_white" />
+                    android:orientation="horizontal"
+                    android:background="@drawable/neon_gradient_2"
+                    android:padding="8dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LV.99"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/cyber_text_primary"
+                        android:fontFamily="monospace" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
-        <!-- Game Style Tab Layout -->
-        <LinearLayout
+        <!-- Neon Tab Layout -->
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@color/game_bg_overlay"
+            android:background="@color/cyber_black"
             android:padding="4dp">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="56dp"
                 android:background="@color/transparent" />
 
-        </LinearLayout>
+        </FrameLayout>
 
     </LinearLayout>
 
-    <!-- ViewPager with Game Background -->
+    <!-- Content Area with Neon Grid -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"

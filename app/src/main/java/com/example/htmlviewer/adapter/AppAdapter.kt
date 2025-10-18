@@ -32,15 +32,15 @@ class AppAdapter(
         fun bind(appItem: AppItem) {
             binding.tvAppName.text = appItem.getDisplayName()
             
-            // Set app icon and game gradient background based on app type
+            // Set app icon and neon gradient background based on app type
             val (iconRes, gradientRes) = when (appItem.getIconResourceName()) {
-                "weather_icon" -> Pair(R.drawable.ic_menu_sunny_day, R.drawable.bg_game_gradient_1)
-                "calculator_icon" -> Pair(android.R.drawable.ic_menu_add, R.drawable.bg_game_gradient_2)
-                "todo_icon" -> Pair(android.R.drawable.ic_menu_agenda, R.drawable.bg_game_gradient_3)
-                "music_icon" -> Pair(android.R.drawable.ic_media_play, R.drawable.bg_game_gradient_4)
-                "gallery_icon" -> Pair(android.R.drawable.ic_menu_gallery, R.drawable.bg_game_gradient_5)
-                "notes_icon" -> Pair(android.R.drawable.ic_menu_edit, R.drawable.bg_game_gradient_6)
-                else -> Pair(android.R.drawable.ic_menu_info_details, R.drawable.bg_game_gradient_1)
+                "weather_icon" -> Pair(R.drawable.ic_menu_sunny_day, R.drawable.neon_gradient_1)
+                "calculator_icon" -> Pair(android.R.drawable.ic_menu_add, R.drawable.neon_gradient_2)
+                "todo_icon" -> Pair(android.R.drawable.ic_menu_agenda, R.drawable.neon_gradient_3)
+                "music_icon" -> Pair(android.R.drawable.ic_media_play, R.drawable.neon_gradient_4)
+                "gallery_icon" -> Pair(android.R.drawable.ic_menu_gallery, R.drawable.neon_gradient_5)
+                "notes_icon" -> Pair(android.R.drawable.ic_menu_edit, R.drawable.neon_gradient_6)
+                else -> Pair(android.R.drawable.ic_menu_info_details, R.drawable.neon_gradient_1)
             }
             
             binding.ivAppIcon.setImageResource(iconRes)

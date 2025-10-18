@@ -18,121 +18,126 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="16dp">
 
-            <!-- Game Hall Header -->
+            <!-- Cyberpunk Welcome Panel -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/bg_game_gradient_3"
-                android:padding="32dp"
-                android:layout_marginBottom="24dp"
+                android:background="@drawable/neon_gradient_3"
+                android:padding="24dp"
+                android:layout_marginBottom="20dp"
                 android:elevation="8dp">
 
-                <!-- Game Stats Bar -->
+                <!-- System Status -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="16dp">
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="horizontal"
-                        android:background="@color/game_bg_overlay"
-                        android:padding="12dp"
+                        android:background="@color/cyber_black"
+                        android:padding="8dp"
+                        android:layout_marginEnd="8dp"
                         android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="🏆"
-                            android:textSize="20sp"
-                            android:layout_marginEnd="8dp" />
+                            android:text="◉"
+                            android:textSize="12sp"
+                            android:textColor="@color/neon_green"
+                            android:layout_marginEnd="6dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Score: 1250"
-                            android:textSize="14sp"
+                            android:text="SYSTEM: ONLINE"
+                            android:textSize="10sp"
                             android:textStyle="bold"
-                            android:textColor="@color/text_white" />
+                            android:textColor="@color/cyber_text_primary"
+                            android:fontFamily="monospace" />
 
                     </LinearLayout>
 
-                    <View
-                        android:layout_width="16dp"
-                        android:layout_height="1dp" />
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="horizontal"
-                        android:background="@color/game_bg_overlay"
-                        android:padding="12dp"
+                        android:background="@color/cyber_black"
+                        android:padding="8dp"
+                        android:layout_marginStart="8dp"
                         android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="💎"
-                            android:textSize="20sp"
-                            android:layout_marginEnd="8dp" />
+                            android:text="▲"
+                            android:textSize="12sp"
+                            android:textColor="@color/neon_cyan"
+                            android:layout_marginEnd="6dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Gems: 42"
-                            android:textSize="14sp"
+                            android:text="APPS: 6 LOADED"
+                            android:textSize="10sp"
                             android:textStyle="bold"
-                            android:textColor="@color/text_white" />
+                            android:textColor="@color/cyber_text_primary"
+                            android:fontFamily="monospace" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
+                <!-- Main Title -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="🎮 GAME ARCADE"
+                    android:text="NEON ARCADE"
                     android:textSize="32sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_white"
+                    android:textColor="@color/cyber_text_primary"
                     android:gravity="center"
-                    android:layout_marginBottom="12dp"
-                    android:shadowColor="@color/game_bg_overlay"
-                    android:shadowDx="3"
-                    android:shadowDy="3"
-                    android:shadowRadius="6" />
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.15"
+                    android:shadowColor="@color/neon_pink"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="12" />
 
+                <!-- Subtitle -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Choose Your Adventure!"
-                    android:textSize="18sp"
-                    android:textColor="@color/text_white"
+                    android:text="[ SELECT YOUR PROGRAM ]"
+                    android:textSize="14sp"
+                    android:textColor="@color/cyber_text_accent"
                     android:gravity="center"
-                    android:alpha="0.9"
-                    android:textStyle="italic" />
+                    android:fontFamily="monospace"
+                    android:letterSpacing="0.1" />
 
             </LinearLayout>
 
-            <!-- Apps Grid -->
+            <!-- Apps Grid with Neon Style -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingBottom="24dp"
+                android:paddingBottom="20dp"
                 android:nestedScrollingEnabled="false"
                 tools:listitem="@layout/item_app" />
 
-            <!-- Empty State -->
+            <!-- Cyberpunk Empty State -->
             <LinearLayout
                 android:id="@+id/emptyView"
                 android:layout_width="match_parent"
@@ -140,30 +145,41 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:padding="40dp"
+                android:background="@color/cyber_medium"
                 android:visibility="gone">
 
+                <!-- Glitch Effect -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="📱"
-                    android:textSize="64sp"
-                    android:layout_marginBottom="16dp" />
+                    android:text="[ERROR]"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/neon_pink"
+                    android:fontFamily="monospace"
+                    android:layout_marginBottom="12dp"
+                    android:shadowColor="@color/neon_pink"
+                    android:shadowDx="2"
+                    android:shadowDy="0"
+                    android:shadowRadius="8" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="暂无应用"
-                    android:textSize="20sp"
+                    android:text="NO PROGRAMS DETECTED"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_primary"
+                    android:textColor="@color/cyber_text_primary"
+                    android:fontFamily="monospace"
                     android:layout_marginBottom="8dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="下拉刷新试试看"
-                    android:textSize="14sp"
-                    android:textColor="@color/text_secondary" />
+                    android:text="&gt;&gt; SWIPE TO REFRESH SYSTEM &lt;&lt;"
+                    android:textSize="12sp"
+                    android:textColor="@color/cyber_text_accent"
+                    android:fontFamily="monospace" />
 
             </LinearLayout>
 

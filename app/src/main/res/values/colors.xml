@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Game Style Primary Colors -->
-    <color name="game_primary">#FF6366F1</color>
-    <color name="game_primary_dark">#FF4F46E5</color>
-    <color name="game_secondary">#FFEC4899</color>
-    <color name="game_secondary_dark">#FFDB2777</color>
-    <color name="game_accent">#FF10B981</color>
-    <color name="game_accent_dark">#FF059669</color>
+    <!-- Cyberpunk Neon Colors -->
+    <color name="neon_pink">#FFFF0080</color>
+    <color name="neon_cyan">#FF00FFFF</color>
+    <color name="neon_purple">#FFAA00FF</color>
+    <color name="neon_green">#FF00FF80</color>
+    <color name="neon_orange">#FFFF8000</color>
+    <color name="neon_blue">#FF0080FF</color>
     
-    <!-- Game Gradient Colors -->
-    <color name="game_gradient_1_start">#FFFF6B6B</color>
-    <color name="game_gradient_1_end">#FFFF8E53</color>
-    <color name="game_gradient_2_start">#FF4ECDC4</color>
-    <color name="game_gradient_2_end">#FF44A08D</color>
-    <color name="game_gradient_3_start">#FFAA5CDB</color>
-    <color name="game_gradient_3_end">#FF667EEA</color>
-    <color name="game_gradient_4_start">#FFFC466B</color>
-    <color name="game_gradient_4_end">#FF3F5EFB</color>
-    <color name="game_gradient_5_start">#FFFDBB2D</color>
-    <color name="game_gradient_5_end">#FF22C1C3</color>
-    <color name="game_gradient_6_start">#FF2196F3</color>
-    <color name="game_gradient_6_end">#FF21CBF3</color>
+    <!-- Dark Cyberpunk Backgrounds -->
+    <color name="cyber_black">#FF0A0A0F</color>
+    <color name="cyber_dark">#FF1A1A2E</color>
+    <color name="cyber_medium">#FF16213E</color>
+    <color name="cyber_light">#FF2A2D3A</color>
     
-    <!-- Game Background Colors -->
-    <color name="game_bg_primary">#FF0F0F23</color>
-    <color name="game_bg_secondary">#FF1A1A2E</color>
-    <color name="game_bg_card">#FF16213E</color>
-    <color name="game_bg_overlay">#CC000000</color>
+    <!-- Neon Gradients -->
+    <color name="neon_gradient_1_start">#FFFF0080</color>
+    <color name="neon_gradient_1_end">#FFAA00FF</color>
+    <color name="neon_gradient_2_start">#FF00FFFF</color>
+    <color name="neon_gradient_2_end">#FF0080FF</color>
+    <color name="neon_gradient_3_start">#FFAA00FF</color>
+    <color name="neon_gradient_3_end">#FFFF0080</color>
+    <color name="neon_gradient_4_start">#FF00FF80</color>
+    <color name="neon_gradient_4_end">#FF00FFFF</color>
+    <color name="neon_gradient_5_start">#FFFF8000</color>
+    <color name="neon_gradient_5_end">#FFFF0080</color>
+    <color name="neon_gradient_6_start">#FF0080FF</color>
+    <color name="neon_gradient_6_end">#FF00FF80</color>
+    
+    <!-- Glow Effects -->
+    <color name="neon_glow_pink">#44FF0080</color>
+    <color name="neon_glow_cyan">#4400FFFF</color>
+    <color name="neon_glow_purple">#44AA00FF</color>
+    <color name="neon_glow_green">#4400FF80</color>
+    
+    <!-- Text Colors -->
+    <color name="cyber_text_primary">#FFFFFFFF</color>
+    <color name="cyber_text_secondary">#FFCCCCCC</color>
+    <color name="cyber_text_accent">#FF00FFFF</color>
     
     <!-- Legacy colors for compatibility -->
     <color name="primary_orange">#FFFF6B35</color>

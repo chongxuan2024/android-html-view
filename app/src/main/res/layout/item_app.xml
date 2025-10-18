@@ -1,119 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res/auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
+    android:layout_margin="8dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
-    android:background="@drawable/game_card_selector">
+    android:background="@color/cyber_medium">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp"
+        android:padding="20dp"
         android:gravity="center">
 
-        <!-- Game Style Icon Container -->
+        <!-- Neon Icon Container -->
         <FrameLayout
             android:id="@+id/iconContainer"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_game_gradient_1">
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/neon_gradient_1">
 
-            <!-- Glow Effect -->
+            <!-- Hexagon Border Effect -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/bg_game_gradient_1"
-                android:alpha="0.3" />
+                android:background="@drawable/neon_gradient_1"
+                android:alpha="0.6" />
 
-            <!-- Game Icon -->
+            <!-- App Icon -->
             <ImageView
                 android:id="@+id/ivAppIcon"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center"
                 android:scaleType="centerInside"
-                android:contentDescription="游戏图标"
-                android:tint="@color/text_white"
-                android:elevation="2dp"
+                android:contentDescription="应用图标"
+                android:tint="@color/cyber_text_primary"
+                android:elevation="4dp"
                 tools:src="@drawable/ic_menu_sunny_day" />
 
-            <!-- Sparkle Effect -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✨"
-                android:textSize="16sp"
-                android:layout_gravity="top|end"
-                android:layout_margin="8dp" />
+            <!-- Corner Accents -->
+            <View
+                android:layout_width="12dp"
+                android:layout_height="2dp"
+                android:background="@color/neon_cyan"
+                android:layout_gravity="top|start"
+                android:layout_margin="4dp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="12dp"
+                android:background="@color/neon_cyan"
+                android:layout_gravity="top|start"
+                android:layout_margin="4dp" />
+
+            <View
+                android:layout_width="12dp"
+                android:layout_height="2dp"
+                android:background="@color/neon_cyan"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="4dp" />
+
+            <View
+                android:layout_width="2dp"
+                android:layout_height="12dp"
+                android:background="@color/neon_cyan"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="4dp" />
 
         </FrameLayout>
 
-        <!-- Game Name with Glow -->
+        <!-- App Name with Cyber Font -->
         <TextView
             android:id="@+id/tvAppName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="游戏名称"
-            android:textSize="18sp"
+            android:text="APP NAME"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="@color/text_white"
+            android:textColor="@color/cyber_text_primary"
             android:gravity="center"
             android:maxLines="2"
             android:ellipsize="end"
-            android:layout_marginBottom="16dp"
-            android:shadowColor="@color/game_bg_overlay"
-            android:shadowDx="1"
-            android:shadowDy="1"
-            android:shadowRadius="3"
-            tools:text="天气游戏" />
+            android:layout_marginBottom="12dp"
+            android:fontFamily="monospace"
+            android:letterSpacing="0.05"
+            android:shadowColor="@color/neon_purple"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="4"
+            tools:text="WEATHER SIM" />
 
-        <!-- Game Stats Section -->
+        <!-- Status Bar -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center"
-            android:background="@color/game_bg_overlay"
-            android:padding="8dp">
+            android:background="@color/cyber_black"
+            android:padding="8dp"
+            android:gravity="center_vertical">
 
-            <!-- Rating Stars -->
+            <!-- Status Indicator -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="start|center_vertical">
+
+                <View
+                    android:layout_width="6dp"
+                    android:layout_height="6dp"
+                    android:background="@drawable/neon_gradient_4"
+                    android:layout_marginEnd="6dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="⭐⭐⭐⭐⭐"
-                    android:textSize="12sp" />
+                    android:text="READY"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/neon_green"
+                    android:fontFamily="monospace" />
 
             </LinearLayout>
 
-            <!-- Play Button -->
+            <!-- Launch Button -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_game_gradient_2"
-                android:padding="6dp"
+                android:background="@drawable/neon_gradient_2"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
                 android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="▶ PLAY"
+                    android:text="► LAUNCH"
                     android:textSize="10sp"
                     android:textStyle="bold"
-                    android:textColor="@color/text_white" />
+                    android:textColor="@color/cyber_text_primary"
+                    android:fontFamily="monospace" />
 
             </LinearLayout>
 
@@ -121,23 +154,24 @@
 
     </LinearLayout>
 
-    <!-- Game Badge (Top Right Corner) -->
+    <!-- Neon Badge for Favorites -->
     <LinearLayout
         android:id="@+id/ivFavoriteBadge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
-        android:layout_margin="12dp"
-        android:background="@drawable/bg_game_gradient_1"
-        android:padding="6dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/neon_gradient_3"
+        android:padding="4dp"
         android:visibility="gone"
         android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="💎"
-            android:textSize="16sp" />
+            android:text="★"
+            android:textSize="12sp"
+            android:textColor="@color/cyber_text_primary" />
 
     </LinearLayout>
 
