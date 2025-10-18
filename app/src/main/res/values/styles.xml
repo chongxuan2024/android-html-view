@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Modern Button Styles -->
+    <style name="ModernButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_height">56dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="backgroundTint">@color/transparent</item>
+        <item name="android:background">@drawable/btn_primary_selector</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="rippleColor">@color/background_overlay</item>
+    </style>
+
+    <style name="ModernButton.Secondary">
+        <item name="android:textColor">@color/primary_orange</item>
+        <item name="android:background">@drawable/btn_secondary_selector</item>
+    </style>
+
+    <!-- Card Styles -->
+    <style name="ModernCard">
+        <item name="android:background">@drawable/card_app_selector</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <!-- Text Styles -->
+    <style name="HeadlineText">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+    <style name="TitleText">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="SubtitleText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <style name="BodyText">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+
+    <style name="CaptionText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_tertiary</item>
+    </style>
+
+    <!-- Toolbar Styles -->
+    <style name="ModernToolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="android:background">@color/transparent</item>
+        <item name="titleTextColor">@color/text_white</item>
+        <item name="subtitleTextColor">@color/text_white</item>
+        <item name="android:theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
+    <!-- Tab Layout Styles -->
+    <style name="ModernTabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabTextColor">@color/text_white</item>
+        <item name="tabSelectedTextColor">@color/text_white</item>
+        <item name="tabIndicatorColor">@color/transparent</item>
+        <item name="tabBackground">@color/transparent</item>
+        <item name="tabRippleColor">@color/background_overlay</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabGravity">fill</item>
+    </style>
+
+    <!-- FAB Styles -->
+    <style name="ModernFAB" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/transparent</item>
+        <item name="android:background">@drawable/fab_selector</item>
+        <item name="tint">@color/text_white</item>
+        <item name="elevation">8dp</item>
+        <item name="pressedTranslationZ">12dp</item>
+        <item name="rippleColor">@color/background_overlay</item>
+    </style>
+
+</resources>

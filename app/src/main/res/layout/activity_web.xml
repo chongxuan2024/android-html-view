@@ -46,8 +46,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
+        android:layout_margin="20dp"
         android:src="@android:drawable/btn_star_big_off"
-        app:tint="@color/white" />
+        app:backgroundTint="@color/secondary_pink"
+        app:tint="@color/text_white" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

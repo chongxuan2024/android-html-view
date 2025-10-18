@@ -32,25 +32,26 @@ class AppAdapter(
         fun bind(appItem: AppItem) {
             binding.tvAppName.text = appItem.getDisplayName()
             
-            // Set app icon based on app type
-            val iconRes = when (appItem.getIconResourceName()) {
-                "weather_icon" -> R.drawable.ic_menu_sunny_day
-                "calculator_icon" -> android.R.drawable.ic_menu_add
-                "todo_icon" -> android.R.drawable.ic_menu_agenda
-                "music_icon" -> android.R.drawable.ic_media_play
-                "gallery_icon" -> android.R.drawable.ic_menu_gallery
-                "notes_icon" -> android.R.drawable.ic_menu_edit
-                else -> android.R.drawable.ic_menu_info_details
+            // Set app icon and game gradient background based on app type
+            val (iconRes, gradientRes) = when (appItem.getIconResourceName()) {
+                "weather_icon" -> Pair(R.drawable.ic_menu_sunny_day, R.drawable.bg_game_gradient_1)
+                "calculator_icon" -> Pair(android.R.drawable.ic_menu_add, R.drawable.bg_game_gradient_2)
+                "todo_icon" -> Pair(android.R.drawable.ic_menu_agenda, R.drawable.bg_game_gradient_3)
+                "music_icon" -> Pair(android.R.drawable.ic_media_play, R.drawable.bg_game_gradient_4)
+                "gallery_icon" -> Pair(android.R.drawable.ic_menu_gallery, R.drawable.bg_game_gradient_5)
+                "notes_icon" -> Pair(android.R.drawable.ic_menu_edit, R.drawable.bg_game_gradient_6)
+                else -> Pair(android.R.drawable.ic_menu_info_details, R.drawable.bg_game_gradient_1)
             }
-            binding.ivAppIcon.setImageResource(iconRes)
             
-            // Set favorite status
-            val favoriteIcon = if (appItem.isFavorite) {
-                android.R.drawable.btn_star_big_on
+            binding.ivAppIcon.setImageResource(iconRes)
+            binding.iconContainer.setBackgroundResource(gradientRes)
+            
+            // Show/hide game badge for favorites
+            binding.ivFavoriteBadge.visibility = if (appItem.isFavorite) {
+                android.view.View.VISIBLE
             } else {
-                android.R.drawable.btn_star_big_off
+                android.view.View.GONE
             }
-            binding.ivFavorite.setImageResource(favoriteIcon)
             
             // Set click listener
             binding.root.setOnClickListener {

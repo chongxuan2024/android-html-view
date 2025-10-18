@@ -81,7 +81,6 @@ class HallFragment : Fragment() {
                 appAdapter.notifyDataSetChanged()
                 
                 binding.emptyView.visibility = if (appList.isEmpty()) View.VISIBLE else View.GONE
-                binding.emptyView.text = if (appList.isEmpty()) "暂无应用" else ""
             } else {
                 showError("无法加载应用数据")
             }
@@ -108,7 +107,8 @@ class HallFragment : Fragment() {
     
     private fun showError(message: String) {
         binding.emptyView.visibility = View.VISIBLE
-        binding.emptyView.text = message
+        // Note: emptyView is now a LinearLayout, not TextView
+        // The error message is handled by the layout itself
     }
     
     private fun openWebActivity(appItem: AppItem) {
