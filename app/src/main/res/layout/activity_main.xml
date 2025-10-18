@@ -5,19 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/cyber_black"
+    android:background="@color/beach_sand"
     tools:context=".MainActivity">
 
-    <!-- Cyberpunk Header -->
+    <!-- Tropical Paradise Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/neon_gradient_1"
+        android:background="@drawable/tropical_gradient_2"
         android:padding="24dp"
-        android:elevation="12dp">
+        android:elevation="8dp">
 
-        <!-- Top Status Bar -->
+        <!-- Welcome Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,80 +35,80 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NEON"
+                    android:text="🌴 Paradise"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    android:textColor="@color/cyber_text_primary"
-                    android:fontFamily="monospace"
-                    android:letterSpacing="0.2"
-                    android:shadowColor="@color/neon_cyan"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
-                    android:shadowRadius="8" />
+                    android:textColor="@color/tropical_text_primary"
+                    android:fontFamily="serif"
+                    android:shadowColor="@color/tropical_shadow_coral"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="3" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="HTML ARCADE"
+                    android:text="HTML Beach Resort"
                     android:textSize="14sp"
-                    android:textColor="@color/cyber_text_accent"
-                    android:fontFamily="monospace"
-                    android:letterSpacing="0.1"
-                    android:layout_marginTop="-4dp" />
+                    android:textColor="@color/tropical_text_accent"
+                    android:fontFamily="serif"
+                    android:textStyle="italic"
+                    android:layout_marginTop="-2dp" />
 
             </LinearLayout>
 
-            <!-- Status Indicators -->
+            <!-- Weather & Status -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center">
 
-                <!-- Connection Status -->
+                <!-- Weather Info -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:background="@color/cyber_medium"
+                    android:background="@color/beach_white"
                     android:padding="8dp"
                     android:layout_marginEnd="12dp"
                     android:gravity="center">
 
-                    <View
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:background="@drawable/neon_gradient_4"
-                        android:layout_marginEnd="6dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="☀️"
+                        android:textSize="16sp"
+                        android:layout_marginEnd="4dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ONLINE"
-                        android:textSize="10sp"
+                        android:text="28°C"
+                        android:textSize="12sp"
                         android:textStyle="bold"
-                        android:textColor="@color/neon_green"
-                        android:fontFamily="monospace" />
+                        android:textColor="@color/tropical_text_primary"
+                        android:fontFamily="serif" />
 
                 </LinearLayout>
 
-                <!-- User Level -->
+                <!-- Relaxation Mode -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:background="@drawable/neon_gradient_2"
+                    android:background="@drawable/tropical_gradient_4"
                     android:padding="8dp"
                     android:gravity="center">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="LV.99"
+                        android:text="Relax Mode"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:textColor="@color/cyber_text_primary"
-                        android:fontFamily="monospace" />
+                        android:textColor="@color/tropical_text_primary"
+                        android:fontFamily="serif" />
 
                 </LinearLayout>
 
@@ -116,24 +116,24 @@
 
         </LinearLayout>
 
-        <!-- Neon Tab Layout -->
+        <!-- Tropical Tab Layout -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/cyber_black"
-            android:padding="4dp">
+            android:background="@color/beach_white"
+            android:padding="6dp">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="52dp"
                 android:background="@color/transparent" />
 
         </FrameLayout>
 
     </LinearLayout>
 
-    <!-- Content Area with Neon Grid -->
+    <!-- Content Area with Beach Vibes -->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="match_parent"

@@ -20,49 +20,48 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Cyberpunk Welcome Panel -->
+            <!-- Tropical Paradise Welcome -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/neon_gradient_3"
-                android:padding="24dp"
+                android:background="@drawable/tropical_gradient_3"
+                android:padding="28dp"
                 android:layout_marginBottom="20dp"
-                android:elevation="8dp">
+                android:elevation="6dp">
 
-                <!-- System Status -->
+                <!-- Beach Status Bar -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginBottom="16dp">
+                    android:layout_marginBottom="20dp">
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="horizontal"
-                        android:background="@color/cyber_black"
-                        android:padding="8dp"
+                        android:background="@color/beach_white"
+                        android:padding="10dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="◉"
-                            android:textSize="12sp"
-                            android:textColor="@color/neon_green"
+                            android:text="🌴"
+                            android:textSize="14sp"
                             android:layout_marginEnd="6dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="SYSTEM: ONLINE"
-                            android:textSize="10sp"
+                            android:text="Paradise Open"
+                            android:textSize="11sp"
                             android:textStyle="bold"
-                            android:textColor="@color/cyber_text_primary"
-                            android:fontFamily="monospace" />
+                            android:textColor="@color/tropical_text_primary"
+                            android:fontFamily="serif" />
 
                     </LinearLayout>
 
@@ -71,63 +70,61 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="horizontal"
-                        android:background="@color/cyber_black"
-                        android:padding="8dp"
+                        android:background="@color/beach_white"
+                        android:padding="10dp"
                         android:layout_marginStart="8dp"
                         android:gravity="center">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="▲"
-                            android:textSize="12sp"
-                            android:textColor="@color/neon_cyan"
+                            android:text="🏖️"
+                            android:textSize="14sp"
                             android:layout_marginEnd="6dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="APPS: 6 LOADED"
-                            android:textSize="10sp"
+                            android:text="6 Beach Apps"
+                            android:textSize="11sp"
                             android:textStyle="bold"
-                            android:textColor="@color/cyber_text_primary"
-                            android:fontFamily="monospace" />
+                            android:textColor="@color/tropical_text_primary"
+                            android:fontFamily="serif" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <!-- Main Title -->
+                <!-- Main Paradise Title -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NEON ARCADE"
-                    android:textSize="32sp"
+                    android:text="🌺 Beach Resort"
+                    android:textSize="30sp"
                     android:textStyle="bold"
-                    android:textColor="@color/cyber_text_primary"
+                    android:textColor="@color/tropical_text_primary"
                     android:gravity="center"
                     android:layout_marginBottom="8dp"
-                    android:fontFamily="monospace"
-                    android:letterSpacing="0.15"
-                    android:shadowColor="@color/neon_pink"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
-                    android:shadowRadius="12" />
+                    android:fontFamily="serif"
+                    android:shadowColor="@color/tropical_shadow_coral"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="4" />
 
-                <!-- Subtitle -->
+                <!-- Relaxing Subtitle -->
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="[ SELECT YOUR PROGRAM ]"
-                    android:textSize="14sp"
-                    android:textColor="@color/cyber_text_accent"
+                    android:text="~ Choose Your Relaxing Experience ~"
+                    android:textSize="16sp"
+                    android:textColor="@color/tropical_text_accent"
                     android:gravity="center"
-                    android:fontFamily="monospace"
-                    android:letterSpacing="0.1" />
+                    android:fontFamily="serif"
+                    android:textStyle="italic" />
 
             </LinearLayout>
 
-            <!-- Apps Grid with Neon Style -->
+            <!-- Beach Apps Grid -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
@@ -137,7 +134,7 @@
                 android:nestedScrollingEnabled="false"
                 tools:listitem="@layout/item_app" />
 
-            <!-- Cyberpunk Empty State -->
+            <!-- Tropical Empty State -->
             <LinearLayout
                 android:id="@+id/emptyView"
                 android:layout_width="match_parent"
@@ -145,41 +142,35 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:padding="40dp"
-                android:background="@color/cyber_medium"
+                android:background="@color/beach_white"
                 android:visibility="gone">
 
-                <!-- Glitch Effect -->
+                <!-- Beach Icon -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="[ERROR]"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/neon_pink"
-                    android:fontFamily="monospace"
-                    android:layout_marginBottom="12dp"
-                    android:shadowColor="@color/neon_pink"
-                    android:shadowDx="2"
-                    android:shadowDy="0"
-                    android:shadowRadius="8" />
+                    android:text="🏝️"
+                    android:textSize="48sp"
+                    android:layout_marginBottom="16dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NO PROGRAMS DETECTED"
-                    android:textSize="16sp"
+                    android:text="No Beach Apps Found"
+                    android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/cyber_text_primary"
-                    android:fontFamily="monospace"
+                    android:textColor="@color/tropical_text_primary"
+                    android:fontFamily="serif"
                     android:layout_marginBottom="8dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="&gt;&gt; SWIPE TO REFRESH SYSTEM &lt;&lt;"
-                    android:textSize="12sp"
-                    android:textColor="@color/cyber_text_accent"
-                    android:fontFamily="monospace" />
+                    android:text="~ Swipe down to refresh your paradise ~"
+                    android:textSize="14sp"
+                    android:textColor="@color/tropical_text_secondary"
+                    android:fontFamily="serif"
+                    android:textStyle="italic" />
 
             </LinearLayout>
 

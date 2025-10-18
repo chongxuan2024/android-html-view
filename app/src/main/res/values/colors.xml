@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Cyberpunk Neon Colors -->
-    <color name="neon_pink">#FFFF0080</color>
-    <color name="neon_cyan">#FF00FFFF</color>
-    <color name="neon_purple">#FFAA00FF</color>
-    <color name="neon_green">#FF00FF80</color>
-    <color name="neon_orange">#FFFF8000</color>
-    <color name="neon_blue">#FF0080FF</color>
+    <!-- Tropical Paradise Colors -->
+    <color name="tropical_coral">#FFFF7F7F</color>
+    <color name="tropical_turquoise">#FF40E0D0</color>
+    <color name="tropical_lime">#FF32CD32</color>
+    <color name="tropical_sunset">#FFFF6347</color>
+    <color name="tropical_gold">#FFFFD700</color>
+    <color name="tropical_sky">#FF87CEEB</color>
     
-    <!-- Dark Cyberpunk Backgrounds -->
-    <color name="cyber_black">#FF0A0A0F</color>
-    <color name="cyber_dark">#FF1A1A2E</color>
-    <color name="cyber_medium">#FF16213E</color>
-    <color name="cyber_light">#FF2A2D3A</color>
+    <!-- Warm Beach Backgrounds -->
+    <color name="beach_sand">#FFF5F5DC</color>
+    <color name="beach_cream">#FFFFF8DC</color>
+    <color name="beach_white">#FFFFFEF7</color>
+    <color name="beach_light">#FFF0F8FF</color>
     
-    <!-- Neon Gradients -->
-    <color name="neon_gradient_1_start">#FFFF0080</color>
-    <color name="neon_gradient_1_end">#FFAA00FF</color>
-    <color name="neon_gradient_2_start">#FF00FFFF</color>
-    <color name="neon_gradient_2_end">#FF0080FF</color>
-    <color name="neon_gradient_3_start">#FFAA00FF</color>
-    <color name="neon_gradient_3_end">#FFFF0080</color>
-    <color name="neon_gradient_4_start">#FF00FF80</color>
-    <color name="neon_gradient_4_end">#FF00FFFF</color>
-    <color name="neon_gradient_5_start">#FFFF8000</color>
-    <color name="neon_gradient_5_end">#FFFF0080</color>
-    <color name="neon_gradient_6_start">#FF0080FF</color>
-    <color name="neon_gradient_6_end">#FF00FF80</color>
+    <!-- Tropical Gradients -->
+    <color name="tropical_gradient_1_start">#FFFF7F7F</color>
+    <color name="tropical_gradient_1_end">#FFFF6347</color>
+    <color name="tropical_gradient_2_start">#FF40E0D0</color>
+    <color name="tropical_gradient_2_end">#FF87CEEB</color>
+    <color name="tropical_gradient_3_start">#FF32CD32</color>
+    <color name="tropical_gradient_3_end">#FF40E0D0</color>
+    <color name="tropical_gradient_4_start">#FFFFD700</color>
+    <color name="tropical_gradient_4_end">#FFFF7F7F</color>
+    <color name="tropical_gradient_5_start">#FFFF6347</color>
+    <color name="tropical_gradient_5_end">#FFFFD700</color>
+    <color name="tropical_gradient_6_start">#FF87CEEB</color>
+    <color name="tropical_gradient_6_end">#FF32CD32</color>
     
-    <!-- Glow Effects -->
-    <color name="neon_glow_pink">#44FF0080</color>
-    <color name="neon_glow_cyan">#4400FFFF</color>
-    <color name="neon_glow_purple">#44AA00FF</color>
-    <color name="neon_glow_green">#4400FF80</color>
+    <!-- Soft Shadow Effects -->
+    <color name="tropical_shadow_coral">#33FF7F7F</color>
+    <color name="tropical_shadow_turquoise">#3340E0D0</color>
+    <color name="tropical_shadow_lime">#3332CD32</color>
+    <color name="tropical_shadow_gold">#33FFD700</color>
     
     <!-- Text Colors -->
-    <color name="cyber_text_primary">#FFFFFFFF</color>
-    <color name="cyber_text_secondary">#FFCCCCCC</color>
-    <color name="cyber_text_accent">#FF00FFFF</color>
+    <color name="tropical_text_primary">#FF2F4F4F</color>
+    <color name="tropical_text_secondary">#FF696969</color>
+    <color name="tropical_text_accent">#FF20B2AA</color>
     
     <!-- Legacy colors for compatibility -->
     <color name="primary_orange">#FFFF6B35</color>
