@@ -3,6 +3,7 @@ package com.example.htmlviewer.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.htmlviewer.R
 import com.example.htmlviewer.databinding.ItemAppBinding
 import com.example.htmlviewer.model.AppItem
 
@@ -33,11 +34,12 @@ class AppAdapter(
             
             // Set app icon based on app type
             val iconRes = when (appItem.getIconResourceName()) {
-                "weather_icon" -> android.R.drawable.ic_menu_add
+                "weather_icon" -> R.drawable.ic_menu_sunny_day
                 "calculator_icon" -> android.R.drawable.ic_menu_add
                 "todo_icon" -> android.R.drawable.ic_menu_agenda
                 "music_icon" -> android.R.drawable.ic_media_play
                 "gallery_icon" -> android.R.drawable.ic_menu_gallery
+                "notes_icon" -> android.R.drawable.ic_menu_edit
                 else -> android.R.drawable.ic_menu_info_details
             }
             binding.ivAppIcon.setImageResource(iconRes)

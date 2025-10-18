@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相册浏览器</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2d3436;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .photo-item {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .photo-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        .photo-item.landscape {
+            grid-column: span 2;
+            background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+        }
+        .photo-item.tall {
+            grid-row: span 2;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 10px;
+            font-size: 12px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .btn {
+            background: #74b9ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #0984e3;
+        }
+        .view-mode {
+            display: flex;
+            gap: 5px;
+        }
+        .view-btn {
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+        .view-btn.active {
+            background: #00b894;
+        }
+        .stats {
+            text-align: center;
+            color: #636e72;
+            font-size: 14px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+        }
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+        .modal img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .photo-placeholder {
+            font-size: 48px;
+            opacity: 0.7;
+        }
+        .grid-view {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .list-view {
+            grid-template-columns: 1fr;
+        }
+        .list-view .photo-item {
+            aspect-ratio: 3/1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📸 相册浏览器</h1>
+        
+        <div class="controls">
+            <button class="btn" onclick="addPhoto()">添加照片</button>
+            <div class="view-mode">
+                <button class="btn view-btn active" onclick="setViewMode('grid')">网格</button>
+                <button class="btn view-btn" onclick="setViewMode('list')">列表</button>
+            </div>
+        </div>
+        
+        <div class="gallery-grid" id="gallery">
+            <!-- 照片将通过JavaScript动态生成 -->
+        </div>
+        
+        <div class="stats" id="stats">
+            共 0 张照片
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-close" onclick="closeModal()">&times;</div>
+        <div class="modal-content">
+            <div class="photo-placeholder" id="modalContent">🖼️</div>
+        </div>
+    </div>
+
+    <script>
+        let photos = [
+            { id: 1, name: '风景照片', emoji: '🏔️', type: 'landscape', category: '风景' },
+            { id: 2, name: '城市夜景', emoji: '🌃', type: 'normal', category: '城市' },
+            { id: 3, name: '海边日落', emoji: '🌅', type: 'tall', category: '风景' },
+            { id: 4, name: '咖啡时光', emoji: '☕', type: 'normal', category: '生活' },
+            { id: 5, name: '美食摄影', emoji: '🍕', type: 'normal', category: '美食' },
+            { id: 6, name: '宠物照片', emoji: '🐱', type: 'normal', category: '动物' },
+            { id: 7, name: '花园景色', emoji: '🌺', type: 'landscape', category: '风景' },
+            { id: 8, name: '建筑摄影', emoji: '🏛️', type: 'normal', category: '建筑' }
+        ];
+        let currentView = 'grid';
+
+        function renderGallery() {
+            const gallery = document.getElementById('gallery');
+            gallery.className = `gallery-grid ${currentView}-view`;
+            gallery.innerHTML = '';
+            
+            photos.forEach(photo => {
+                const photoElement = document.createElement('div');
+                photoElement.className = `photo-item ${photo.type}`;
+                photoElement.onclick = () => openModal(photo);
+                
+                photoElement.innerHTML = `
+                    <div class="photo-placeholder">${photo.emoji}</div>
+                    <div class="photo-overlay">
+                        <div>${photo.name}</div>
+                        <div>${photo.category}</div>
+                    </div>
+                `;
+                
+                gallery.appendChild(photoElement);
+            });
+            
+            updateStats();
+        }
+
+        function addPhoto() {
+            const emojis = ['📷', '🎨', '🌈', '⭐', '🎪', '🎭', '🎬', '🎪', '🎨', '🖼️'];
+            const names = ['新照片', '艺术作品', '彩虹瞬间', '星空摄影', '表演现场', '戏剧瞬间', '电影剧照', '嘉年华', '艺术创作', '经典作品'];
+            const categories = ['摄影', '艺术', '自然', '人物', '建筑', '风景', '动物', '美食'];
+            const types = ['normal', 'landscape', 'tall'];
+            
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+            const randomType = types[Math.floor(Math.random() * types.length)];
+            
+            const newPhoto = {
+                id: Date.now(),
+                name: randomName,
+                emoji: randomEmoji,
+                type: randomType,
+                category: randomCategory
+            };
+            
+            photos.unshift(newPhoto);
+            renderGallery();
+        }
+
+        function setViewMode(mode) {
+            currentView = mode;
+            document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderGallery();
+        }
+
+        function openModal(photo) {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modalContent.innerHTML = `
+                <div style="font-size: 120px; margin-bottom: 20px;">${photo.emoji}</div>
+                <div style="color: white; font-size: 24px; margin-bottom: 10px;">${photo.name}</div>
+                <div style="color: #ccc; font-size: 16px;">${photo.category}</div>
+            `;
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function updateStats() {
+            const stats = document.getElementById('stats');
+            const categories = [...new Set(photos.map(p => p.category))];
+            stats.textContent = `共 ${photos.length} 张照片，${categories.length} 个分类`;
+        }
+
+        // 初始化
+        renderGallery();
+        
+        // 点击模态框背景关闭
+        document.getElementById('modal').onclick = function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        };
+    </script>
+</body>
+</html>
+

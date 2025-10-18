@@ -33,7 +33,12 @@ class WebActivity : AppCompatActivity() {
         binding = ActivityWebBinding.inflate(layoutInflater)
         setContentView(binding.root)
         
-        appItem = intent.getParcelableExtra(EXTRA_APP_ITEM) ?: run {
+        appItem = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            intent.getParcelableExtra(EXTRA_APP_ITEM, AppItem::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra(EXTRA_APP_ITEM)
+        } ?: run {
             finish()
             return
         }
