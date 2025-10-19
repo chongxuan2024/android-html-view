@@ -1,100 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res/auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
+    android:layout_margin="6dp"
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground">
 
-    <!-- Card Container with Variable Height -->
-    <FrameLayout
+    <!-- Simple Rounded Image -->
+    <ImageView
+        android:id="@+id/ivAppIcon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/tropical_card_selector"
-        android:elevation="6dp">
-
-        <FrameLayout
-            android:id="@+id/iconContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/tropical_gradient_1">
-
-            <!-- Dynamic Height Image Container -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <!-- App Icon -->
-                <ImageView
-                    android:id="@+id/ivAppIcon"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:minHeight="120dp"
-                    android:maxHeight="200dp"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="应用图标"
-                    tools:src="@drawable/ic_menu_sunny_day" />
-
-                <!-- App Name -->
-                <TextView
-                    android:id="@+id/tvAppName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="应用名称"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/tropical_text_primary"
-                    android:gravity="center"
-                    android:fontFamily="serif"
-                    android:shadowColor="@color/tropical_shadow_coral"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="2"
-                    tools:text="天气应用" />
-
-            </LinearLayout>
-
-            <!-- Gradient Overlay for better text visibility -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/tropical_gradient_1"
-                android:alpha="0.3" />
-
-        </FrameLayout>
-
-    </FrameLayout>
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:background="@drawable/rounded_image_bg"
+        android:contentDescription="应用图标"
+        tools:src="@drawable/ic_menu_sunny_day" />
 
     <!-- Favorite Badge (Top Right Corner) -->
-    <LinearLayout
+    <TextView
         android:id="@+id/ivFavoriteBadge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|end"
-        android:layout_margin="12dp"
-        android:background="@drawable/tropical_gradient_5"
-        android:padding="6dp"
-        android:visibility="gone"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="💖"
-            android:textSize="16sp" />
-
-    </LinearLayout>
+        android:layout_margin="8dp"
+        android:background="@drawable/favorite_badge_bg"
+        android:padding="4dp"
+        android:text="💖"
+        android:textSize="14sp"
+        android:visibility="gone" />
 
     <!-- Hidden elements for compatibility -->
     <ImageView
         android:id="@+id/ivFavorite"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone" />
+
+    <!-- Hidden text view for compatibility -->
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        tools:text="App Name" />
+
+    <!-- Hidden container for compatibility -->
+    <FrameLayout
+        android:id="@+id/iconContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="gone" />

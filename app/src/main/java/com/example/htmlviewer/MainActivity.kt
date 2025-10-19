@@ -30,8 +30,8 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun setupStatusBar() {
-        // Set status bar color to match paradise header
-        window.statusBarColor = getColor(R.color.tropical_turquoise)
+        // Set status bar color to match paradise header (left side blue)
+        window.statusBarColor = getColor(R.color.tropical_gradient_2_start)
         
         // Make status bar icons dark for better visibility
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

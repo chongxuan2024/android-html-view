@@ -32,8 +32,6 @@ class AppAdapter(
     inner class AppViewHolder(private val binding: ItemAppBinding) : RecyclerView.ViewHolder(binding.root) {
         
         fun bind(appItem: AppItem) {
-            binding.tvAppName.text = appItem.getDisplayName()
-            
             // Load image from assets
             try {
                 val inputStream = binding.root.context.assets.open(appItem.appIcon)
@@ -49,19 +47,6 @@ class AppAdapter(
                 // Fallback to default icon
                 binding.ivAppIcon.setImageResource(android.R.drawable.ic_menu_info_details)
             }
-            
-            // Set tropical gradient background based on position
-            val gradientRes = when (bindingAdapterPosition % 6) {
-                0 -> R.drawable.tropical_gradient_1
-                1 -> R.drawable.tropical_gradient_2
-                2 -> R.drawable.tropical_gradient_3
-                3 -> R.drawable.tropical_gradient_4
-                4 -> R.drawable.tropical_gradient_5
-                5 -> R.drawable.tropical_gradient_6
-                else -> R.drawable.tropical_gradient_1
-            }
-            
-            binding.iconContainer.setBackgroundResource(gradientRes)
             
             // Show/hide favorite badge
             binding.ivFavoriteBadge.visibility = if (appItem.isFavorite) {

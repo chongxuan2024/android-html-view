@@ -43,10 +43,18 @@ class WebActivity : AppCompatActivity() {
             return
         }
         
-        setupToolbar()
+        setupFullScreen()
         setupWebView()
-        setupFab()
+        setupFloatingButtons()
         loadHtmlFile()
+    }
+    
+    private fun setupFullScreen() {
+        // Hide action bar for full screen experience
+        supportActionBar?.hide()
+        
+        // Set status bar color to match content
+        window.statusBarColor = getColor(R.color.transparent)
     }
     
     private fun setupToolbar() {
@@ -88,7 +96,13 @@ class WebActivity : AppCompatActivity() {
         }
     }
     
-    private fun setupFab() {
+    private fun setupFloatingButtons() {
+        // Setup back button
+        binding.backButton.setOnClickListener {
+            onBackPressed()
+        }
+        
+        // Setup favorite button
         updateFabIcon()
         binding.fabFavorite.setOnClickListener {
             toggleFavorite()
@@ -111,13 +125,8 @@ class WebActivity : AppCompatActivity() {
     }
     
     private fun updateFabIcon() {
-        val iconRes = if (isFavorite) {
-            android.R.drawable.btn_star_big_on
-        } else {
-            android.R.drawable.btn_star_big_off
-        }
-        binding.fabFavorite.setImageResource(iconRes)
-        binding.fabFavorite.imageTintList = ContextCompat.getColorStateList(this, R.color.white)
+        val iconText = if (isFavorite) "💖" else "🤍"
+        binding.favoriteIcon.text = iconText
     }
     
     private fun loadFavoriteStatus() {
