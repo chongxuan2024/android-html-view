@@ -4,11 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
+import android.webkit.ConsoleMessage
 import android.webkit.WebChromeClient
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +24,7 @@ import com.example.htmlviewer.data.FavoritesManager
 import com.example.htmlviewer.data.UserStatsManager
 import com.example.htmlviewer.databinding.ActivityWebBinding
 import com.example.htmlviewer.model.AppItem
+import com.example.htmlviewer.webview.GameJavaScriptInterface
 
 class WebActivity : AppCompatActivity() {
     
@@ -27,6 +32,7 @@ class WebActivity : AppCompatActivity() {
     private lateinit var appItem: AppItem
     private lateinit var favoritesManager: FavoritesManager
     private lateinit var userStatsManager: UserStatsManager
+    private lateinit var gameJSInterface: GameJavaScriptInterface
     private var isFavorite = false
     
     companion object {
@@ -57,6 +63,9 @@ class WebActivity : AppCompatActivity() {
         // 初始化FavoritesManager和UserStatsManager
         favoritesManager = FavoritesManager.getInstance(this)
         userStatsManager = UserStatsManager.getInstance(this)
+        
+        // 创建JavaScript接口
+        gameJSInterface = GameJavaScriptInterface(this, appItem.appName)
         
         // 记录应用打开
         userStatsManager.recordAppOpen(appItem.appName)
@@ -103,11 +112,21 @@ class WebActivity : AppCompatActivity() {
                 override fun onPageStarted(view: WebView?, url: String?, favicon: android.graphics.Bitmap?) {
                     super.onPageStarted(view, url, favicon)
                     binding.progressBar.visibility = android.view.View.VISIBLE
+                    Log.d("WebActivity", "页面开始加载: $url")
                 }
                 
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
                     binding.progressBar.visibility = android.view.View.GONE
+                    Log.d("WebActivity", "页面加载完成: $url")
+                    
+                    // 页面加载完成后，测试JavaScript接口
+//                    testJavaScriptInterface()
+                }
+                
+                override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
+                    super.onReceivedError(view, request, error)
+                    Log.e("WebActivity", "WebView加载错误: ${error?.description}")
                 }
             }
             
@@ -115,11 +134,13 @@ class WebActivity : AppCompatActivity() {
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
                     super.onProgressChanged(view, newProgress)
                     binding.progressBar.progress = newProgress
-                    
-                    if (newProgress == 100) {
-                        // 模拟游戏成绩记录（实际应该通过JavaScript接口）
-                        simulateGameScore()
+                }
+                
+                override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
+                    consoleMessage?.let {
+                        Log.d("WebView-Console", "[${it.messageLevel()}] ${it.message()} (${it.sourceId()}:${it.lineNumber()})")
                     }
+                    return true
                 }
             }
             
@@ -128,7 +149,16 @@ class WebActivity : AppCompatActivity() {
                 domStorageEnabled = true
                 allowFileAccess = true
                 allowContentAccess = true
+                
+                // 添加调试支持
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+                    android.webkit.WebView.setWebContentsDebuggingEnabled(true)
+                }
             }
+            
+            // 注册JavaScript接口
+            addJavascriptInterface(gameJSInterface, GameJavaScriptInterface.INTERFACE_NAME)
+            Log.d("WebActivity", "JavaScript接口已注册: ${GameJavaScriptInterface.INTERFACE_NAME}")
         }
     }
     
@@ -187,16 +217,7 @@ class WebActivity : AppCompatActivity() {
         appItem.isFavorite = isFavorite
         updateFabIcon()
     }
-    
-    /**
-     * 模拟游戏成绩记录
-     * 实际项目中应该通过JavaScript接口与HTML游戏交互
-     */
-    private fun simulateGameScore() {
-        // 为演示目的，生成随机成绩
-        val randomScore = (50..1000).random()
-        userStatsManager.recordGameScore(appItem.appName, randomScore)
-    }
+
     
     override fun onResume() {
         super.onResume()

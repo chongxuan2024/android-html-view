@@ -76,13 +76,21 @@ class UserStatsManager private constructor(private val context: Context) {
     
     /**
      * 记录游戏成绩
+     * @param appName 应用名称
+     * @param score 游戏分数（必须 >= 0）
      */
     fun recordGameScore(appName: String, score: Int) {
         try {
+            // 验证分数有效性
+            if (score < 0) {
+                Log.w(TAG, "无效分数: $score，分数不能为负数")
+                return
+            }
+            
             val scores = getAppScores().toMutableMap()
             val currentScore = scores[appName]
             
-            // 只记录更高的成绩
+            // 只记录更高的成绩，或者首次记录（包括0分）
             if (currentScore == null || score > currentScore.highestScore) {
                 scores[appName] = AppScoreStats(appName, score, System.currentTimeMillis())
                 
@@ -90,6 +98,8 @@ class UserStatsManager private constructor(private val context: Context) {
                 sharedPrefs.edit().putString(KEY_APP_SCORES, json).apply()
                 
                 Log.d(TAG, "记录游戏成绩: $appName, 分数: $score")
+            } else {
+                Log.d(TAG, "分数未更新: $appName, 当前分数: $score, 历史最高: ${currentScore.highestScore}")
             }
         } catch (e: Exception) {
             Log.e(TAG, "记录游戏成绩失败", e)
