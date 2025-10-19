@@ -1,4 +1,4 @@
-name: HTML Viewer Android CI/CD
+name: Paradise HTML Viewer CI/CD
 
 on:
   push:
@@ -27,38 +27,67 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: gradle
+          
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        working-directory: ./app
+      - name: Grant execute permission for scripts
+        run: |
+          chmod +x gradlew
+          chmod +x scripts/download_resources.sh
+        working-directory: ./
 
       - name: Create local.properties
         run: |
-          echo "sdk.dir=$ANDROID_HOME" > app/local.properties
+          echo "sdk.dir=$ANDROID_HOME" > local.properties
+        working-directory: ./
+        
+      - name: Download game resources
+        run: |
+          echo "🚀 开始下载游戏资源..."
+          ./scripts/download_resources.sh
+        working-directory: ./
+        
+      - name: Verify downloaded resources
+        run: |
+          echo "📋 验证下载的资源..."
+          ls -la app/src/main/assets/
+          echo "📄 apps.json内容:"
+          cat app/src/main/assets/apps.json
+          echo "🖼️ 图片文件:"
+          ls -la app/src/main/assets/images/ || echo "图片目录不存在"
+          echo "📄 HTML文件:"
+          ls -la app/src/main/assets/html/ || echo "HTML目录不存在"
         
       - name: Decode and create keystore (if secrets exist)
         if: ${{ secrets.JKS != '' }}
         run: |
-          echo "${{ secrets.JKS }}" | base64 --decode > app/htmlviewer.jks
-          echo "STORE_FILE=htmlviewer.jks" >> app/keystore.properties
-          echo "STORE_PASSWORD=${{ secrets.JKS_PASSWORD }}" >> app/keystore.properties
-          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> app/keystore.properties
-          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> app/keystore.properties
+          echo "${{ secrets.JKS }}" | base64 --decode > htmlviewer.jks
+          echo "STORE_FILE=htmlviewer.jks" >> keystore.properties
+          echo "STORE_PASSWORD=${{ secrets.JKS_PASSWORD }}" >> keystore.properties
+          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> keystore.properties
+          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> keystore.properties
         working-directory: ./
 
       - name: Build Debug APK
-        run: ./gradlew app:assembleDebug
+        run: |
+          echo "🔨 构建Debug APK..."
+          ./gradlew app:assembleDebug --stacktrace
         working-directory: ./
 
       - name: Build Release APK (if keystore exists)
         if: ${{ secrets.JKS != '' }}
-        run: ./gradlew app:assembleRelease
+        run: |
+          echo "🔨 构建Release APK..."
+          ./gradlew app:assembleRelease --stacktrace
         working-directory: ./
 
       - name: Upload Debug APK as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: htmlviewer-debug-apk
+          name: paradise-html-debug-apk
           path: app/build/outputs/apk/debug/*.apk
           retention-days: 30
 
@@ -66,9 +95,43 @@ jobs:
         if: ${{ secrets.JKS != '' }}
         uses: actions/upload-artifact@v4
         with:
-          name: htmlviewer-release-apk
+          name: paradise-html-release-apk
           path: app/build/outputs/apk/release/*.apk
           retention-days: 90
+          
+      - name: Generate build summary
+        run: |
+          echo "## 🎉 构建完成摘要" >> $GITHUB_STEP_SUMMARY
+          echo "### 📱 APK信息" >> $GITHUB_STEP_SUMMARY
+          echo "| 类型 | 文件 | 大小 |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|------|------|" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f app/build/outputs/apk/debug/*.apk ]; then
+            DEBUG_APK=$(ls app/build/outputs/apk/debug/*.apk)
+            DEBUG_SIZE=$(du -h "$DEBUG_APK" | cut -f1)
+            echo "| Debug | $(basename "$DEBUG_APK") | $DEBUG_SIZE |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ -f app/build/outputs/apk/release/*.apk ]; then
+            RELEASE_APK=$(ls app/build/outputs/apk/release/*.apk)
+            RELEASE_SIZE=$(du -h "$RELEASE_APK" | cut -f1)
+            echo "| Release | $(basename "$RELEASE_APK") | $RELEASE_SIZE |" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "### 🎮 游戏资源" >> $GITHUB_STEP_SUMMARY
+          GAME_COUNT=$(cat app/src/main/assets/apps.json | python3 -c "import sys, json; print(len(json.load(sys.stdin)))")
+          echo "- 成功下载 **$GAME_COUNT** 个游戏" >> $GITHUB_STEP_SUMMARY
+          echo "- 资源来源: [API接口](http://47.112.166.202:8080/userapi/allGame2)" >> $GITHUB_STEP_SUMMARY
+          
+          echo "### 📂 资源结构" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "app/src/main/assets/" >> $GITHUB_STEP_SUMMARY
+          echo "├── apps.json" >> $GITHUB_STEP_SUMMARY
+          echo "├── images/" >> $GITHUB_STEP_SUMMARY
+          ls app/src/main/assets/images/ | sed 's/^/│   ├── /' >> $GITHUB_STEP_SUMMARY
+          echo "└── html/" >> $GITHUB_STEP_SUMMARY
+          ls app/src/main/assets/html/ | sed 's/^/    ├── /' >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
 
       - name: Create GitHub Release (on tag push)
         if: startsWith(github.ref, 'refs/tags/v')
@@ -76,27 +139,38 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ github.ref_name }}
-          name: "HTML Viewer Paradise ${{ github.ref_name }}"
+          name: "Paradise HTML Viewer ${{ github.ref_name }}"
           body: |
-            ## 🌴 HTML Viewer Paradise Release ${{ github.ref_name }}
+            ## 🌴 Paradise HTML Viewer Release ${{ github.ref_name }}
             
             ### 🏖️ What's New
-            - Beautiful tropical paradise theme with warm colors
-            - Relaxing beach resort interface design
-            - Six different tropical gradient backgrounds
-            - Improved user experience with vacation vibes
+            - 🎮 **自动游戏资源下载**: 每次构建自动获取最新游戏内容
+            - 🌺 **热带天堂主题**: 美丽的海滩度假村界面设计
+            - 💖 **收藏功能**: 持久化收藏状态，支持应用升级
+            - 🏄‍♂️ **冲浪体验**: 网上冲浪的完美体验
+            - 🔄 **智能排序**: 收藏的应用优先显示
             
             ### 📱 Download
-            - **Release APK**: Optimized for production use (requires signing)
-            - **Debug APK**: For testing and development
+            - **Release APK**: 生产环境优化版本 (需要签名)
+            - **Debug APK**: 测试和开发版本
             
-            ### 🌺 Features
-            - HTML application viewer with tropical theme
-            - Favorite apps management
-            - Beautiful beach resort UI design
-            - Smooth navigation between apps
+            ### 🎮 游戏内容
+            本版本包含以下HTML游戏：
+            - 🔤 **认识多音字** (拼音) - 谢雨菲
+            - 🎯 **成语消消乐** (成语) - 马方泽  
+            - 🌿 **二十四节气自然探索** (国学) - 何远皓
+            - 📚 **四大名著** (文学) - 余思成
+            - 📝 **经典诗词** (诗词) - 何远皓
+            - 🎲 **成语猜一猜** (成语) - 王子铭
             
-            Enjoy your digital paradise! 🏝️
+            ### 🌺 核心特性
+            - 🏝️ HTML应用浏览器，热带天堂主题
+            - 💾 收藏应用管理，数据持久化保护
+            - 🎨 美丽的海滩度假村UI设计
+            - 🔄 应用间流畅导航
+            - 🌐 自动资源下载和更新
+            
+            享受您的数字天堂！🏝️🌺✨
           draft: false
           prerelease: false
           files: |
@@ -115,10 +189,23 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: gradle
+          
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-        working-directory: ./app
+      - name: Grant execute permission for scripts
+        run: |
+          chmod +x gradlew
+          chmod +x scripts/download_resources.sh
+        working-directory: ./
+
+      - name: Download game resources for testing
+        run: |
+          echo "🚀 为测试下载游戏资源..."
+          ./scripts/download_resources.sh
+        working-directory: ./
 
       - name: Run unit tests
         run: ./gradlew app:testDebugUnitTest
