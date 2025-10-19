@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- 圆形海洋背景 -->
+    <path
+        android:pathData="M54,0 A54,54 0 1,1 54,108 A54,54 0 1,1 54,0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startColor="#87CEEB"
+                android:endColor="#006994"
+                android:type="radial"
+                android:centerX="54"
+                android:centerY="40"
+                android:gradientRadius="60" />
+        </aapt:attr>
+    </path>
+    
+    <!-- 太阳 -->
+    <path
+        android:fillColor="#FFD700"
+        android:pathData="M80,20 A6,6 0 1,1 80,32 A6,6 0 1,1 80,20 Z" />
+    
+    <!-- 海浪 -->
+    <path
+        android:fillColor="#4FC3F7"
+        android:pathData="M10,65 Q25,55 40,60 Q55,65 70,55 Q85,50 98,55 Q98,75 54,75 Q10,75 10,65 Z" />
+    
+    <!-- 海浪泡沫 -->
+    <path
+        android:fillColor="#E1F5FE"
+        android:fillAlpha="0.8"
+        android:pathData="M15,68 Q30,62 45,66 Q60,70 75,64 Q90,60 95,62 Q95,72 54,72 Q15,72 15,68 Z" />
+    
+    <!-- 冲浪板 -->
+    <path
+        android:fillColor="#FF6B35"
+        android:pathData="M40,40 Q45,35 55,37 Q65,39 68,45 Q70,50 68,58 Q65,66 58,70 Q53,72 48,70 Q40,66 38,58 Q36,50 40,40 Z" />
+    
+    <!-- 冲浪板装饰 -->
+    <path
+        android:strokeColor="#FF4500"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M43,45 Q53,43 63,47 M45,53 Q55,51 63,55" />
+    
+    <!-- 冲浪者 -->
+    <path
+        android:fillColor="#FFDBCB"
+        android:pathData="M54,30 A3,3 0 1,1 54,36 A3,3 0 1,1 54,30 Z" />
+    
+    <path
+        android:fillColor="#8D6E63"
+        android:pathData="M52,33 Q56,30 60,33 Q62,36 60,40 Q58,43 54,43 Q50,43 48,40 Q46,36 48,33 Q50,30 52,33 Z" />
+    
+    <!-- 冲浪者手臂 -->
+    <path
+        android:strokeColor="#FFDBCB"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:pathData="M48,36 Q44,33 42,30 M60,36 Q64,33 66,30" />
+    
+    <!-- 水花 -->
+    <path
+        android:fillColor="#E1F5FE"
+        android:fillAlpha="0.7"
+        android:pathData="M30,50 Q33,45 37,47 Q40,50 37,53 Q33,55 30,53 Q27,50 30,50 Z" />
+    
+    <path
+        android:fillColor="#E1F5FE"
+        android:fillAlpha="0.7"
+        android:pathData="M75,43 Q78,38 82,40 Q85,43 82,46 Q78,48 75,46 Q72,43 75,43 Z" />
+    
+    <!-- 椰子树剪影 -->
+    <path
+        android:fillColor="#2E7D32"
+        android:fillAlpha="0.5"
+        android:pathData="M20,40 Q21,30 22,25 Q23,22 25,24 Q27,26 26,30 Q25,40 26,45 L20,45 Q19,42 20,40 Z" />
+    
+    <path
+        android:fillColor="#388E3C"
+        android:fillAlpha="0.5"
+        android:pathData="M23,25 Q28,20 33,23 Q31,27 26,27 Q24,26 23,25 Z M23,25 Q18,20 13,23 Q15,27 20,27 Q22,26 23,25 Z" />
+    
+</vector>
