@@ -8,102 +8,100 @@
     android:background="@color/beach_sand"
     tools:context=".MainActivity">
 
-    <!-- Tropical Paradise Header -->
-    <LinearLayout
+    <!-- Tropical Paradise Header with Corner Sun Effect -->
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/tropical_gradient_2"
-        android:padding="20dp"
-        android:gravity="center_vertical"
-        android:elevation="8dp">
+        android:layout_height="wrap_content">
 
-        <!-- App Title -->
+        <!-- Corner Sun Glow Effect -->
+        <View
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="-60dp"
+            android:layout_marginEnd="-60dp"
+            android:background="@drawable/corner_sun_glow" />
+
+        <!-- Header Content with Bottom Gradient -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/paradise_header_bg">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Main Header Content -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="🌴 Paradise"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="@color/tropical_text_primary"
-                android:fontFamily="serif"
-                android:shadowColor="@color/tropical_shadow_coral"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="3" />
+                android:orientation="horizontal"
+                android:padding="20dp"
+                android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/tvAppCount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="6 Apps Available"
-                android:textSize="12sp"
-                android:textColor="@color/tropical_text_accent"
-                android:fontFamily="serif"
-                android:textStyle="italic"
-                android:layout_marginTop="-2dp" />
+                <!-- App Title -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🌴 Paradise"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/tropical_text_primary"
+                        android:fontFamily="serif"
+                        android:shadowColor="@color/tropical_shadow_coral"
+                        android:shadowDx="1"
+                        android:shadowDy="1"
+                        android:shadowRadius="3" />
+
+                    <TextView
+                        android:id="@+id/tvAppCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="6 Apps Available"
+                        android:textSize="12sp"
+                        android:textColor="@color/tropical_text_accent"
+                        android:fontFamily="serif"
+                        android:textStyle="italic"
+                        android:layout_marginTop="-2dp" />
+
+                </LinearLayout>
+
+                <!-- Profile/Home Icon -->
+                <FrameLayout
+                    android:id="@+id/profileIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/tropical_gradient_4"
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <TextView
+                        android:id="@+id/iconText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="👤"
+                        android:textSize="20sp"
+                        android:layout_gravity="center" />
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <!-- Bottom Gradient Transition -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@drawable/header_bottom_gradient" />
 
         </LinearLayout>
 
-        <!-- Right Side Icons -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <!-- Sun with Gradient Effect -->
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp">
-
-                <!-- Sun Background Glow -->
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/sun_glow_gradient"
-                    android:alpha="0.6" />
-
-                <!-- Sun Icon -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="☀️"
-                    android:textSize="24sp"
-                    android:layout_gravity="center" />
-
-            </FrameLayout>
-
-            <!-- Profile Icon -->
-            <FrameLayout
-                android:id="@+id/profileIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/tropical_gradient_4"
-                android:padding="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?android:attr/selectableItemBackground">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="👤"
-                    android:textSize="20sp"
-                    android:layout_gravity="center" />
-
-            </FrameLayout>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </FrameLayout>
 
     <!-- Content Area - Only Hall Fragment -->
     <FrameLayout
