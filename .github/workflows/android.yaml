@@ -50,7 +50,7 @@ jobs:
           ./scripts/download_resources.sh
         working-directory: ./
         
-      - name: Verify downloaded resources
+        - name: Verify downloaded resources
         run: |
           echo "📋 验证下载的资源..."
           ls -la app/src/main/assets/
@@ -60,16 +60,6 @@ jobs:
           ls -la app/src/main/assets/images/ || echo "图片目录不存在"
           echo "📄 HTML文件:"
           ls -la app/src/main/assets/html/ || echo "HTML目录不存在"
-        
-      - name: Decode and create keystore (if secrets exist)
-        if: ${{ secrets.JKS != '' }}
-        run: |
-          echo "${{ secrets.JKS }}" | base64 --decode > htmlviewer.jks
-          echo "STORE_FILE=htmlviewer.jks" >> keystore.properties
-          echo "STORE_PASSWORD=${{ secrets.JKS_PASSWORD }}" >> keystore.properties
-          echo "KEY_ALIAS=${{ secrets.KEY_ALIAS }}" >> keystore.properties
-          echo "KEY_PASSWORD=${{ secrets.KEY_PASSWORD }}" >> keystore.properties
-        working-directory: ./
 
       - name: Build Debug APK
         run: |
@@ -77,10 +67,9 @@ jobs:
           ./gradlew app:assembleDebug --stacktrace
         working-directory: ./
 
-      - name: Build Release APK (if keystore exists)
-        if: ${{ secrets.JKS != '' }}
+      - name: Build Release APK (unsigned)
         run: |
-          echo "🔨 构建Release APK..."
+          echo "🔨 构建Release APK (未签名)..."
           ./gradlew app:assembleRelease --stacktrace
         working-directory: ./
 
@@ -91,11 +80,10 @@ jobs:
           path: app/build/outputs/apk/debug/*.apk
           retention-days: 30
 
-      - name: Upload Release APK as artifact (if exists)
-        if: ${{ secrets.JKS != '' }}
+      - name: Upload Release APK as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: paradise-html-release-apk
+          name: paradise-html-release-unsigned-apk
           path: app/build/outputs/apk/release/*.apk
           retention-days: 90
           
@@ -115,7 +103,7 @@ jobs:
           if [ -f app/build/outputs/apk/release/*.apk ]; then
             RELEASE_APK=$(ls app/build/outputs/apk/release/*.apk)
             RELEASE_SIZE=$(du -h "$RELEASE_APK" | cut -f1)
-            echo "| Release | $(basename "$RELEASE_APK") | $RELEASE_SIZE |" >> $GITHUB_STEP_SUMMARY
+            echo "| Release (未签名) | $(basename "$RELEASE_APK") | $RELEASE_SIZE |" >> $GITHUB_STEP_SUMMARY
           fi
           
           echo "### 🎮 游戏资源" >> $GITHUB_STEP_SUMMARY
@@ -132,12 +120,17 @@ jobs:
           echo "└── html/" >> $GITHUB_STEP_SUMMARY
           ls app/src/main/assets/html/ | sed 's/^/    ├── /' >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          
+          echo "### ⚠️ 重要说明" >> $GITHUB_STEP_SUMMARY
+          echo "- **Debug APK**: 用于开发和测试，包含调试信息" >> $GITHUB_STEP_SUMMARY
+          echo "- **Release APK**: 未签名版本，需要手动签名后才能安装" >> $GITHUB_STEP_SUMMARY
+          echo "- **JavaScript接口**: 已集成完整的游戏交互接口" >> $GITHUB_STEP_SUMMARY
 
       - name: Create GitHub Release (on tag push)
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ github.token }}
           tag_name: ${{ github.ref_name }}
           name: "Paradise HTML Viewer ${{ github.ref_name }}"
           body: |
@@ -149,10 +142,11 @@ jobs:
             - 💖 **收藏功能**: 持久化收藏状态，支持应用升级
             - 🏄‍♂️ **冲浪体验**: 网上冲浪的完美体验
             - 🔄 **智能排序**: 收藏的应用优先显示
+            - 🔌 **JavaScript接口**: 完整的游戏交互API
             
             ### 📱 Download
-            - **Release APK**: 生产环境优化版本 (需要签名)
-            - **Debug APK**: 测试和开发版本
+            - **Debug APK**: 开发测试版本，包含调试信息
+            - **Release APK**: 未签名版本，需要手动签名后安装
             
             ### 🎮 游戏内容
             本版本包含以下HTML游戏：
@@ -163,12 +157,26 @@ jobs:
             - 📝 **经典诗词** (诗词) - 何远皓
             - 🎲 **成语猜一猜** (成语) - 王子铭
             
+            ### 🔌 JavaScript接口
+            为HTML游戏提供完整的交互接口：
+            - `ParadiseGame.submitScore(score)` - 提交游戏分数
+            - `ParadiseGame.getHighScore()` - 获取最高分
+            - `ParadiseGame.getPlayCount()` - 获取游玩次数
+            - `ParadiseGame.gameStart()` - 游戏开始通知
+            - `ParadiseGame.gameEnd(score, time)` - 游戏结束通知
+            - `ParadiseGame.showMessage(msg)` - 显示提示消息
+            
             ### 🌺 核心特性
             - 🏝️ HTML应用浏览器，热带天堂主题
             - 💾 收藏应用管理，数据持久化保护
             - 🎨 美丽的海滩度假村UI设计
             - 🔄 应用间流畅导航
             - 🌐 自动资源下载和更新
+            - 📊 完整的用户统计系统
+            
+            ### ⚠️ 安装说明
+            - **Debug APK**: 可直接安装，用于测试
+            - **Release APK**: 未签名，需要先签名或允许安装未知来源应用
             
             享受您的数字天堂！🏝️🌺✨
           draft: false
