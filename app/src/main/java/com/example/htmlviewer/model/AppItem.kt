@@ -5,22 +5,29 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class AppItem(
-    val appName: String,
-    val appIcon: String,
-    val appFile: String,
+    val title: String,
+    val author: String,
+    val image: String,
+    val type: String,
+    val url: String,
     var isFavorite: Boolean = false
 ) : Parcelable {
     
+    // 为了兼容性，保留旧的属性名访问方式
+    val appName: String get() = title
+    val appIcon: String get() = image
+    val appFile: String get() = url
+    
     fun getIconResourceName(): String {
-        return appIcon.substringBeforeLast(".png")
+        return image.substringBeforeLast(".")
     }
     
     fun getDisplayName(): String {
-        return appName.trim()
+        return title.trim()
     }
     
     fun getHtmlFileName(): String {
-        return appFile
+        return url
     }
     
     override fun equals(other: Any?): Boolean {
@@ -29,17 +36,21 @@ data class AppItem(
         
         other as AppItem
         
-        if (appName != other.appName) return false
-        if (appIcon != other.appIcon) return false
-        if (appFile != other.appFile) return false
+        if (title != other.title) return false
+        if (author != other.author) return false
+        if (image != other.image) return false
+        if (type != other.type) return false
+        if (url != other.url) return false
         
         return true
     }
     
     override fun hashCode(): Int {
-        var result = appName.hashCode()
-        result = 31 * result + appIcon.hashCode()
-        result = 31 * result + appFile.hashCode()
+        var result = title.hashCode()
+        result = 31 * result + author.hashCode()
+        result = 31 * result + image.hashCode()
+        result = 31 * result + type.hashCode()
+        result = 31 * result + url.hashCode()
         return result
     }
 }

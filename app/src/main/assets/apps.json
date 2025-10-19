@@ -1,32 +1,44 @@
 [
   {
-    "appName": "天气应用",
-    "appIcon": "icon/img.png",
-    "appFile": "html/weather.html"
+    "title": "认识多音字",
+    "author": "谢雨菲",
+    "image": "images/谢雨菲_认识多音字.png",
+    "type": "拼音",
+    "url": "html/谢雨菲_认识多音字.html"
   },
   {
-    "appName": "计算器",
-    "appIcon": "icon/img.png",
-    "appFile": "html/calculator.html"
+    "title": "成语消消乐",
+    "author": "马方泽",
+    "image": "images/马方泽_成语消消乐.jpg",
+    "type": "成语",
+    "url": "html/马方泽_成语消消乐.html"
   },
   {
-    "appName": "待办事项",
-    "appIcon": "icon/img.png",
-    "appFile": "html/todo.html"
+    "title": "二十四节气自然探索",
+    "author": "何远皓",
+    "image": "images/何远皓_二十四节气自然探索.jpg",
+    "type": "国学",
+    "url": "html/何远皓_二十四节气自然探索.html"
   },
   {
-    "appName": "音乐播放器",
-    "appIcon": "icon/play.jpg",
-    "appFile": "html/music.html"
+    "title": "四大名著",
+    "author": "余思成",
+    "image": "images/余思成_四大名著.png",
+    "type": "文学",
+    "url": "html/余思成_四大名著.html"
   },
   {
-    "appName": "相册浏览器",
-    "appIcon": "icon/img.png",
-    "appFile": "html/gallery.html"
+    "title": "经典诗词",
+    "author": "何远皓",
+    "image": "images/何远皓_经典诗词.png",
+    "type": "诗词",
+    "url": "html/何远皓_经典诗词.html"
   },
   {
-    "appName": "笔记本",
-    "appIcon": "icon/img.png",
-    "appFile": "html/notes.html"
+    "title": "成语猜一猜",
+    "author": "王子铭",
+    "image": "images/王子铭_成语猜一猜.png",
+    "type": "成语",
+    "url": "html/王子铭_成语猜一猜.html"
   }
 ]

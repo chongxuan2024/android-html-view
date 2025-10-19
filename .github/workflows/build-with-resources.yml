@@ -1,0 +1,116 @@
+name: Build Android APK with Resource Download
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Cache Gradle packages
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+          
+    - name: Make scripts executable
+      run: |
+        chmod +x scripts/download_resources.sh
+        chmod +x gradlew
+        
+    - name: Download game resources
+      run: |
+        echo "🚀 开始下载游戏资源..."
+        ./scripts/download_resources.sh
+        
+    - name: Verify downloaded resources
+      run: |
+        echo "📋 验证下载的资源..."
+        ls -la app/src/main/assets/
+        echo "📄 apps.json内容:"
+        cat app/src/main/assets/apps.json
+        echo "🖼️ 图片文件:"
+        ls -la app/src/main/assets/images/ || echo "图片目录不存在"
+        echo "📄 HTML文件:"
+        ls -la app/src/main/assets/html/ || echo "HTML目录不存在"
+        
+    - name: Build Debug APK
+      run: |
+        echo "🔨 构建Debug APK..."
+        ./gradlew assembleDebug --stacktrace
+        
+    - name: Build Release APK
+      run: |
+        echo "🔨 构建Release APK..."
+        ./gradlew assembleRelease --stacktrace
+        
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: paradise-html-debug-apk
+        path: app/build/outputs/apk/debug/*.apk
+        retention-days: 30
+        
+    - name: Upload Release APK
+      uses: actions/upload-artifact@v3
+      with:
+        name: paradise-html-release-apk
+        path: app/build/outputs/apk/release/*.apk
+        retention-days: 30
+        
+    - name: Generate build summary
+      run: |
+        echo "## 🎉 构建完成摘要" >> $GITHUB_STEP_SUMMARY
+        echo "### 📱 APK信息" >> $GITHUB_STEP_SUMMARY
+        echo "| 类型 | 文件 | 大小 |" >> $GITHUB_STEP_SUMMARY
+        echo "|------|------|------|" >> $GITHUB_STEP_SUMMARY
+        
+        if [ -f app/build/outputs/apk/debug/*.apk ]; then
+          DEBUG_APK=$(ls app/build/outputs/apk/debug/*.apk)
+          DEBUG_SIZE=$(du -h "$DEBUG_APK" | cut -f1)
+          echo "| Debug | $(basename "$DEBUG_APK") | $DEBUG_SIZE |" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        if [ -f app/build/outputs/apk/release/*.apk ]; then
+          RELEASE_APK=$(ls app/build/outputs/apk/release/*.apk)
+          RELEASE_SIZE=$(du -h "$RELEASE_APK" | cut -f1)
+          echo "| Release | $(basename "$RELEASE_APK") | $RELEASE_SIZE |" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "### 🎮 游戏资源" >> $GITHUB_STEP_SUMMARY
+        GAME_COUNT=$(cat app/src/main/assets/apps.json | python3 -c "import sys, json; print(len(json.load(sys.stdin)))")
+        echo "- 成功下载 **$GAME_COUNT** 个游戏" >> $GITHUB_STEP_SUMMARY
+        echo "- 资源来源: [API接口](http://47.112.166.202:8080/userapi/allGame2)" >> $GITHUB_STEP_SUMMARY
+        
+        echo "### 📂 资源结构" >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+        echo "app/src/main/assets/" >> $GITHUB_STEP_SUMMARY
+        echo "├── apps.json" >> $GITHUB_STEP_SUMMARY
+        echo "├── images/" >> $GITHUB_STEP_SUMMARY
+        ls app/src/main/assets/images/ | sed 's/^/│   ├── /' >> $GITHUB_STEP_SUMMARY
+        echo "└── html/" >> $GITHUB_STEP_SUMMARY
+        ls app/src/main/assets/html/ | sed 's/^/    ├── /' >> $GITHUB_STEP_SUMMARY
+        echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
