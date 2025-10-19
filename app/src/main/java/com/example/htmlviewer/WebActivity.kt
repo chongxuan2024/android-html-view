@@ -2,13 +2,20 @@ package com.example.htmlviewer
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowInsetsController
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.example.htmlviewer.databinding.ActivityWebBinding
 import com.example.htmlviewer.model.AppItem
 
@@ -53,8 +60,21 @@ class WebActivity : AppCompatActivity() {
         // Hide action bar for full screen experience
         supportActionBar?.hide()
         
-        // Set status bar color to match content
-        window.statusBarColor = getColor(R.color.transparent)
+        // Enable edge-to-edge display
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        
+        // Hide status bar and navigation bar for immersive experience
+        val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
+        windowInsetsController.apply {
+            // Hide system bars
+            hide(WindowInsetsCompat.Type.systemBars())
+            // Set behavior for when user swipes to show system bars
+            systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
+        
+        // Set status bar and navigation bar to transparent
+        window.statusBarColor = getColor(android.R.color.transparent)
+        window.navigationBarColor = getColor(android.R.color.transparent)
     }
     
     private fun setupToolbar() {
@@ -97,7 +117,8 @@ class WebActivity : AppCompatActivity() {
     }
     
     private fun setupFloatingButtons() {
-        // Setup back button
+        // Setup back button with icon options
+        setupBackIcon()
         binding.backButton.setOnClickListener {
             onBackPressed()
         }
@@ -107,6 +128,22 @@ class WebActivity : AppCompatActivity() {
         binding.fabFavorite.setOnClickListener {
             toggleFavorite()
         }
+    }
+    
+    private fun setupBackIcon() {
+        // You can change this to any of these options:
+        val backIcons = listOf(
+            "↩️",  // Current: Curved arrow (recommended)
+            "⬅️",  // Left arrow emoji
+            "◀",   // Solid left triangle
+            "←",   // Simple left arrow
+            "🔙",  // Back emoji
+            "⤴️",  // Up-left arrow
+            "↖️"   // Up-left diagonal arrow
+        )
+        
+        // Use the first icon (↩️) - you can change the index to try different icons
+        binding.backIcon.text = backIcons[0]
     }
     
     private fun loadHtmlFile() {

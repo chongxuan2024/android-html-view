@@ -27,7 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layout_marginTop="24dp"
+        android:fitsSystemWindows="false">
 
         <!-- Floating Back Button (Left) -->
         <FrameLayout
@@ -40,10 +42,11 @@
             android:foreground="?android:attr/selectableItemBackgroundBorderless">
 
             <TextView
+                android:id="@+id/backIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="🔙"
+                android:text="↩️"
                 android:textSize="20sp" />
 
         </FrameLayout>
