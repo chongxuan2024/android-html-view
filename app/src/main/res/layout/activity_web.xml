@@ -21,50 +21,60 @@
         android:layout_gravity="top"
         android:visibility="gone" />
 
-    <!-- Floating Back Button -->
-    <FrameLayout
-        android:id="@+id/backButton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="top|start"
-        android:layout_margin="16dp"
-        android:background="@drawable/floating_back_bg"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+    <!-- Top Button Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="←"
-            android:textColor="@color/tropical_text_primary"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+        <!-- Floating Back Button (Left) -->
+        <FrameLayout
+            android:id="@+id/backButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/floating_button_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless">
 
-    </FrameLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="🔙"
+                android:textSize="20sp" />
 
-    <!-- Floating Favorite Button -->
-    <FrameLayout
-        android:id="@+id/fabFavorite"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
-        android:background="@drawable/floating_favorite_bg"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?android:attr/selectableItemBackgroundBorderless">
+        </FrameLayout>
 
-        <TextView
-            android:id="@+id/favoriteIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="🤍"
-            android:textSize="20sp" />
+        <!-- Spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
-    </FrameLayout>
+        <!-- Floating Favorite Button (Right) -->
+        <FrameLayout
+            android:id="@+id/fabFavorite"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/floating_button_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless">
+
+            <TextView
+                android:id="@+id/favoriteIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="🤍"
+                android:textSize="20sp" />
+
+        </FrameLayout>
+
+    </LinearLayout>
 
     <!-- Hidden toolbar for compatibility -->
     <androidx.appcompat.widget.Toolbar
