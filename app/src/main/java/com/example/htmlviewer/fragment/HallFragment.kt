@@ -50,8 +50,11 @@ class HallFragment : Fragment() {
             openWebActivity(appItem)
         }
         
+        val layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
+        
         binding.recyclerView.apply {
-            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            this.layoutManager = layoutManager
             adapter = appAdapter
         }
     }

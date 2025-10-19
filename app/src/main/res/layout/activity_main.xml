@@ -51,88 +51,65 @@
 
         </LinearLayout>
 
-        <!-- Weather & Status -->
+        <!-- Right Side Icons -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center">
 
-            <!-- Weather Info -->
-            <LinearLayout
+            <!-- Sun with Gradient Effect -->
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@color/beach_white"
-                android:padding="8dp"
-                android:layout_marginEnd="12dp"
-                android:gravity="center">
+                android:layout_marginEnd="12dp">
 
+                <!-- Sun Background Glow -->
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/sun_glow_gradient"
+                    android:alpha="0.6" />
+
+                <!-- Sun Icon -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="☀️"
-                    android:textSize="16sp"
-                    android:layout_marginEnd="4dp" />
+                    android:textSize="24sp"
+                    android:layout_gravity="center" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="28°C"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/tropical_text_primary"
-                    android:fontFamily="serif" />
+            </FrameLayout>
 
-            </LinearLayout>
-
-            <!-- Relaxation Mode -->
-            <LinearLayout
+            <!-- Profile Icon -->
+            <FrameLayout
+                android:id="@+id/profileIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:background="@drawable/tropical_gradient_4"
                 android:padding="8dp"
-                android:gravity="center">
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Relax Mode"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/tropical_text_primary"
-                    android:fontFamily="serif" />
+                    android:text="👤"
+                    android:textSize="20sp"
+                    android:layout_gravity="center" />
 
-            </LinearLayout>
+            </FrameLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <!-- Content Area -->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
+    <!-- Content Area - Only Hall Fragment -->
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:background="@color/transparent" />
-
-    <!-- Bottom Navigation with Tropical Style -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/tropical_gradient_3"
-        android:padding="12dp"
-        android:elevation="12dp">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="@color/transparent" />
-
-    </LinearLayout>
 
 </LinearLayout>

@@ -1,11 +1,13 @@
 package com.example.htmlviewer.adapter
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.htmlviewer.R
 import com.example.htmlviewer.databinding.ItemAppBinding
 import com.example.htmlviewer.model.AppItem
+import java.io.IOException
 
 class AppAdapter(
     private val appList: List<AppItem>,
@@ -32,18 +34,33 @@ class AppAdapter(
         fun bind(appItem: AppItem) {
             binding.tvAppName.text = appItem.getDisplayName()
             
-            // Set app icon and tropical gradient background based on app type
-            val (iconRes, gradientRes) = when (appItem.getIconResourceName()) {
-                "weather_app_icon" -> Pair(R.drawable.weather_app_icon, R.drawable.tropical_gradient_1)
-                "calculator_app_icon" -> Pair(R.drawable.calculator_app_icon, R.drawable.tropical_gradient_2)
-                "todo_app_icon" -> Pair(R.drawable.todo_app_icon, R.drawable.tropical_gradient_3)
-                "music_app_icon" -> Pair(R.drawable.music_app_icon, R.drawable.tropical_gradient_4)
-                "gallery_app_icon" -> Pair(R.drawable.gallery_app_icon, R.drawable.tropical_gradient_5)
-                "notes_app_icon" -> Pair(R.drawable.notes_app_icon, R.drawable.tropical_gradient_6)
-                else -> Pair(android.R.drawable.ic_menu_info_details, R.drawable.tropical_gradient_1)
+            // Load image from assets
+            try {
+                val inputStream = binding.root.context.assets.open(appItem.appIcon)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                if (bitmap != null) {
+                    binding.ivAppIcon.setImageBitmap(bitmap)
+                } else {
+                    // Fallback to default icon
+                    binding.ivAppIcon.setImageResource(android.R.drawable.ic_menu_info_details)
+                }
+                inputStream.close()
+            } catch (e: IOException) {
+                // Fallback to default icon
+                binding.ivAppIcon.setImageResource(android.R.drawable.ic_menu_info_details)
             }
             
-            binding.ivAppIcon.setImageResource(iconRes)
+            // Set tropical gradient background based on position
+            val gradientRes = when (bindingAdapterPosition % 6) {
+                0 -> R.drawable.tropical_gradient_1
+                1 -> R.drawable.tropical_gradient_2
+                2 -> R.drawable.tropical_gradient_3
+                3 -> R.drawable.tropical_gradient_4
+                4 -> R.drawable.tropical_gradient_5
+                5 -> R.drawable.tropical_gradient_6
+                else -> R.drawable.tropical_gradient_1
+            }
+            
             binding.iconContainer.setBackgroundResource(gradientRes)
             
             // Show/hide favorite badge
