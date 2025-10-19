@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- Base beach sand background -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="@color/beach_sand"
+                android:centerColor="@color/beach_cream"
+                android:endColor="@color/beach_light" />
+        </shape>
+    </item>
+    
+    <!-- Wave pattern overlay -->
+    <item android:top="200dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#2087CEEB"
+                android:centerColor="#3087CEEB"
+                android:endColor="#4087CEEB" />
+        </shape>
+    </item>
+    
+    <!-- Bottom wave accent -->
+    <item android:top="600dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#0087CEEB"
+                android:endColor="#6087CEEB" />
+        </shape>
+    </item>
+    
+</layer-list>

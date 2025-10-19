@@ -95,4 +95,10 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <!-- Rounded Image Style -->
+    <style name="RoundedImageStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
 </resources>
