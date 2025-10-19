@@ -62,57 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center">
-
-                <!-- Weather Info -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@color/beach_white"
-                    android:padding="8dp"
-                    android:layout_marginEnd="12dp"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="☀️"
-                        android:textSize="16sp"
-                        android:layout_marginEnd="4dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="28°C"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/tropical_text_primary"
-                        android:fontFamily="serif" />
-
-                </LinearLayout>
-
-                <!-- Relaxation Mode -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:background="@drawable/tropical_gradient_4"
-                    android:padding="8dp"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Relax Mode"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/tropical_text_primary"
-                        android:fontFamily="serif" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:gravity="center"/>
 
         </LinearLayout>
 
