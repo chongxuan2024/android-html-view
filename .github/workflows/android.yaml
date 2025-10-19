@@ -66,26 +66,14 @@ jobs:
           ./gradlew app:assembleDebug --stacktrace
         working-directory: ./
 
-      - name: Build Release APK (unsigned)
-        run: |
-          echo "🔨 构建Release APK (未签名)..."
-          ./gradlew app:assembleRelease --stacktrace
-        working-directory: ./
 
       - name: Upload Debug APK as artifact
         uses: actions/upload-artifact@v4
         with:
           name: paradise-html-debug-apk
           path: app/build/outputs/apk/debug/*.apk
-          retention-days: 30
-
-      - name: Upload Release APK as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: paradise-html-release-unsigned-apk
-          path: app/build/outputs/apk/release/*.apk
           retention-days: 90
-          
+
       - name: Generate build summary
         run: |
           echo "## 🎉 构建完成摘要" >> $GITHUB_STEP_SUMMARY
@@ -182,5 +170,5 @@ jobs:
           prerelease: false
           files: |
             app/build/outputs/apk/debug/*.apk
-            app/build/outputs/apk/release/*.apk
+#            app/build/outputs/apk/release/*.apk
 
