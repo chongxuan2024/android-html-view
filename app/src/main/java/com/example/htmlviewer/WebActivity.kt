@@ -17,6 +17,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.htmlviewer.data.FavoritesManager
+import com.example.htmlviewer.data.UserStatsManager
 import com.example.htmlviewer.databinding.ActivityWebBinding
 import com.example.htmlviewer.model.AppItem
 
@@ -25,6 +26,7 @@ class WebActivity : AppCompatActivity() {
     private lateinit var binding: ActivityWebBinding
     private lateinit var appItem: AppItem
     private lateinit var favoritesManager: FavoritesManager
+    private lateinit var userStatsManager: UserStatsManager
     private var isFavorite = false
     
     companion object {
@@ -52,8 +54,12 @@ class WebActivity : AppCompatActivity() {
             return
         }
         
-        // 初始化FavoritesManager
+        // 初始化FavoritesManager和UserStatsManager
         favoritesManager = FavoritesManager.getInstance(this)
+        userStatsManager = UserStatsManager.getInstance(this)
+        
+        // 记录应用打开
+        userStatsManager.recordAppOpen(appItem.appName)
         
         setupFullScreen()
         setupWebView()
@@ -109,6 +115,11 @@ class WebActivity : AppCompatActivity() {
                 override fun onProgressChanged(view: WebView?, newProgress: Int) {
                     super.onProgressChanged(view, newProgress)
                     binding.progressBar.progress = newProgress
+                    
+                    if (newProgress == 100) {
+                        // 模拟游戏成绩记录（实际应该通过JavaScript接口）
+                        simulateGameScore()
+                    }
                 }
             }
             
@@ -175,6 +186,16 @@ class WebActivity : AppCompatActivity() {
         isFavorite = favoritesManager.isFavorite(appItem.appName)
         appItem.isFavorite = isFavorite
         updateFabIcon()
+    }
+    
+    /**
+     * 模拟游戏成绩记录
+     * 实际项目中应该通过JavaScript接口与HTML游戏交互
+     */
+    private fun simulateGameScore() {
+        // 为演示目的，生成随机成绩
+        val randomScore = (50..1000).random()
+        userStatsManager.recordGameScore(appItem.appName, randomScore)
     }
     
     override fun onResume() {
