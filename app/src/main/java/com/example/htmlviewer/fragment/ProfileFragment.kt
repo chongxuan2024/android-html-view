@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.htmlviewer.WebActivity
 import com.example.htmlviewer.adapter.AppAdapter
+import com.example.htmlviewer.data.FavoritesManager
 import com.example.htmlviewer.databinding.FragmentProfileBinding
 import com.example.htmlviewer.model.AppItem
 import com.google.gson.Gson
@@ -22,6 +23,7 @@ class ProfileFragment : Fragment() {
     
     private lateinit var favoriteAdapter: AppAdapter
     private val favoriteList = mutableListOf<AppItem>()
+    private lateinit var favoritesManager: FavoritesManager
     
     companion object {
         fun newInstance() = ProfileFragment()
@@ -38,6 +40,9 @@ class ProfileFragment : Fragment() {
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
+        // 初始化FavoritesManager
+        favoritesManager = FavoritesManager.getInstance(requireContext())
         
         setupUserInfo()
         setupFavoriteRecyclerView()
@@ -67,10 +72,9 @@ class ProfileFragment : Fragment() {
                 val listType = object : TypeToken<List<AppItem>>() {}.type
                 val apps: List<AppItem> = gson.fromJson(jsonString, listType)
                 
-                // Filter favorite apps
-                val prefs = requireContext().getSharedPreferences("favorites", Context.MODE_PRIVATE)
+                // Filter favorite apps using FavoritesManager
                 val favorites = apps.filter { app ->
-                    prefs.getBoolean(app.appName, false)
+                    favoritesManager.isFavorite(app.appName)
                 }.map { app ->
                     app.copy(isFavorite = true)
                 }

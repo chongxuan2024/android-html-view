@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
+import com.example.htmlviewer.data.FavoritesManager
 import com.example.htmlviewer.databinding.ActivityWebBinding
 import com.example.htmlviewer.model.AppItem
 
@@ -23,6 +24,7 @@ class WebActivity : AppCompatActivity() {
     
     private lateinit var binding: ActivityWebBinding
     private lateinit var appItem: AppItem
+    private lateinit var favoritesManager: FavoritesManager
     private var isFavorite = false
     
     companion object {
@@ -49,6 +51,9 @@ class WebActivity : AppCompatActivity() {
             finish()
             return
         }
+        
+        // 初始化FavoritesManager
+        favoritesManager = FavoritesManager.getInstance(this)
         
         setupFullScreen()
         setupWebView()
@@ -156,9 +161,8 @@ class WebActivity : AppCompatActivity() {
         appItem.isFavorite = isFavorite
         updateFabIcon()
         
-        // Save to SharedPreferences
-        val prefs = getSharedPreferences("favorites", Context.MODE_PRIVATE)
-        prefs.edit().putBoolean(appItem.appName, isFavorite).apply()
+        // Save using FavoritesManager for persistent storage
+        favoritesManager.setFavorite(appItem.appName, isFavorite)
     }
     
     private fun updateFabIcon() {
@@ -167,8 +171,8 @@ class WebActivity : AppCompatActivity() {
     }
     
     private fun loadFavoriteStatus() {
-        val prefs = getSharedPreferences("favorites", Context.MODE_PRIVATE)
-        isFavorite = prefs.getBoolean(appItem.appName, false)
+        // Load using FavoritesManager for persistent storage
+        isFavorite = favoritesManager.isFavorite(appItem.appName)
         appItem.isFavorite = isFavorite
         updateFabIcon()
     }

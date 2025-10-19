@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.htmlviewer.WebActivity
 import com.example.htmlviewer.adapter.AppAdapter
+import com.example.htmlviewer.data.FavoritesManager
 import com.example.htmlviewer.databinding.FragmentHallBinding
 import com.example.htmlviewer.model.AppItem
 import com.google.gson.Gson
@@ -23,6 +24,7 @@ class HallFragment : Fragment() {
     
     private lateinit var appAdapter: AppAdapter
     private val appList = mutableListOf<AppItem>()
+    private lateinit var favoritesManager: FavoritesManager
     
     companion object {
         fun newInstance() = HallFragment()
@@ -39,6 +41,9 @@ class HallFragment : Fragment() {
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
+        // 初始化FavoritesManager
+        favoritesManager = FavoritesManager.getInstance(requireContext())
         
         setupRecyclerView()
         setupSwipeRefresh()
@@ -73,14 +78,16 @@ class HallFragment : Fragment() {
                 val listType = object : TypeToken<List<AppItem>>() {}.type
                 val apps: List<AppItem> = gson.fromJson(jsonString, listType)
                 
-                // Load favorite status for each app
-                val prefs = requireContext().getSharedPreferences("favorites", Context.MODE_PRIVATE)
+                // Load favorite status for each app using FavoritesManager
                 apps.forEach { app ->
-                    app.isFavorite = prefs.getBoolean(app.appName, false)
+                    app.isFavorite = favoritesManager.isFavorite(app.appName)
                 }
                 
+                // Sort apps: favorites first, then by name
+                val sortedApps = apps.sortedWith(compareByDescending<AppItem> { it.isFavorite }.thenBy { it.appName })
+                
                 appList.clear()
-                appList.addAll(apps)
+                appList.addAll(sortedApps)
                 appAdapter.notifyDataSetChanged()
                 
                 binding.emptyView.visibility = if (appList.isEmpty()) View.VISIBLE else View.GONE
