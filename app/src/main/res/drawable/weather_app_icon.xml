@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    
+    <!-- Sky Background -->
+    <path
+        android:pathData="M0,0 L100,0 L100,100 L0,100 Z"
+        android:fillColor="#87CEEB" />
+    
+    <!-- Sun -->
+    <circle
+        android:centerX="30"
+        android:centerY="30"
+        android:radius="15dp"
+        android:fillColor="#FFD700" />
+    
+    <!-- Sun Rays -->
+    <path
+        android:pathData="M30,10 L30,5 M45,30 L50,30 M42,18 L46,14 M42,42 L46,46 M18,18 L14,14 M18,42 L14,46 M15,30 L10,30 M30,50 L30,55"
+        android:strokeColor="#FFD700"
+        android:strokeWidth="2" />
+    
+    <!-- Clouds -->
+    <path
+        android:pathData="M58,25 Q70,20 82,25 Q85,30 82,35 Q70,40 58,35 Q55,30 58,25 Z"
+        android:fillColor="#FFFFFF" />
+        
+</vector>

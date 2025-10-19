@@ -1,32 +1,32 @@
 [
   {
     "appName": "天气应用",
-    "appIcon": "weather_icon.png",
+    "appIcon": "icon/img.png",
     "appFile": "html/weather.html"
   },
   {
     "appName": "计算器",
-    "appIcon": "calculator_icon.png",
+    "appIcon": "icon/img.png",
     "appFile": "html/calculator.html"
   },
   {
     "appName": "待办事项",
-    "appIcon": "todo_icon.png",
+    "appIcon": "icon/img.png",
     "appFile": "html/todo.html"
   },
   {
     "appName": "音乐播放器",
-    "appIcon": "music_icon.png",
+    "appIcon": "icon/img.png",
     "appFile": "html/music.html"
   },
   {
     "appName": "相册浏览器",
-    "appIcon": "gallery_icon.png",
+    "appIcon": "icon/img.png",
     "appFile": "html/gallery.html"
   },
   {
     "appName": "笔记本",
-    "appIcon": "notes_icon.png",
+    "appIcon": "icon/img.png",
     "appFile": "html/notes.html"
   }
 ]

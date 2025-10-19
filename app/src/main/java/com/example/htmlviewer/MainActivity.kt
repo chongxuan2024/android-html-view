@@ -8,6 +8,9 @@ import com.example.htmlviewer.databinding.ActivityMainBinding
 import com.example.htmlviewer.fragment.HallFragment
 import com.example.htmlviewer.fragment.ProfileFragment
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.example.htmlviewer.model.AppItem
 
 class MainActivity : AppCompatActivity() {
     
@@ -19,6 +22,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         
         setupViewPager()
+        updateAppCount()
+    }
+    
+    private fun updateAppCount() {
+        try {
+            val jsonString = assets.open("apps.json").bufferedReader().use { it.readText() }
+            val gson = Gson()
+            val listType = object : TypeToken<List<AppItem>>() {}.type
+            val appList: List<AppItem> = gson.fromJson(jsonString, listType)
+            
+            binding.tvAppCount.text = "${appList.size} Apps Available"
+        } catch (e: Exception) {
+            binding.tvAppCount.text = "Apps Available"
+        }
     }
     
     private fun setupViewPager() {

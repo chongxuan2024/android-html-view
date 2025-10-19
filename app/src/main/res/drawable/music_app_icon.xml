@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    
+    <!-- Background -->
+    <path
+        android:pathData="M10,10 L90,10 Q95,10 95,15 L95,85 Q95,90 90,90 L10,90 Q5,90 5,85 L5,15 Q5,10 10,10 Z"
+        android:fillColor="#FFD700" />
+    
+    <!-- Vinyl Record -->
+    <circle 
+        android:centerX="50" 
+        android:centerY="50" 
+        android:radius="25dp" 
+        android:fillColor="#FFFFFF" />
+    <circle 
+        android:centerX="50" 
+        android:centerY="50" 
+        android:radius="20dp" 
+        android:fillColor="#333333" />
+    <circle 
+        android:centerX="50" 
+        android:centerY="50" 
+        android:radius="8dp" 
+        android:fillColor="#FFFFFF" />
+    
+    <!-- Play Button -->
+    <path 
+        android:pathData="M45,40 L45,60 L60,50 Z" 
+        android:fillColor="#FFFFFF" />
+    
+    <!-- Music Notes -->
+    <path 
+        android:pathData="M25,25 Q30,20 35,25 Q40,30 35,35 Q30,40 25,35 Q20,30 25,25" 
+        android:fillColor="#FF69B4" />
+    <path 
+        android:pathData="M70,20 Q75,15 80,20 Q85,25 80,30 Q75,35 70,30 Q65,25 70,20" 
+        android:fillColor="#FF69B4" />
+          
+</vector>

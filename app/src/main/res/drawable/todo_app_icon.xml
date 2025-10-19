@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    
+    <!-- Background -->
+    <path
+        android:pathData="M10,10 L90,10 Q95,10 95,15 L95,85 Q95,90 90,90 L10,90 Q5,90 5,85 L5,15 Q5,10 10,10 Z"
+        android:fillColor="#32CD32" />
+    
+    <!-- Paper -->
+    <path
+        android:pathData="M20,15 L80,15 Q82,15 82,17 L82,83 Q82,85 80,85 L20,85 Q18,85 18,83 L18,17 Q18,15 20,15 Z"
+        android:fillColor="#FFFFFF" />
+    
+    <!-- Checkboxes and lines -->
+    <circle 
+        android:centerX="30" 
+        android:centerY="30" 
+        android:radius="3dp" 
+        android:strokeColor="#32CD32" 
+        android:strokeWidth="2" 
+        android:fillColor="#00000000" />
+    <path 
+        android:pathData="M27,30 L29,32 L33,28" 
+        android:strokeColor="#32CD32" 
+        android:strokeWidth="2" />
+    <path 
+        android:pathData="M40,30 L65,30" 
+        android:strokeColor="#333333" 
+        android:strokeWidth="1" />
+    
+    <circle 
+        android:centerX="30" 
+        android:centerY="45" 
+        android:radius="3dp" 
+        android:strokeColor="#CCCCCC" 
+        android:strokeWidth="2" 
+        android:fillColor="#00000000" />
+    <path 
+        android:pathData="M40,45 L65,45" 
+        android:strokeColor="#333333" 
+        android:strokeWidth="1" />
+          
+</vector>

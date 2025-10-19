@@ -87,4 +87,12 @@
         <item name="rippleColor">@color/background_overlay</item>
     </style>
 
+    <!-- Tropical Tab Text Style -->
+    <style name="TropicalTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
 </resources>
