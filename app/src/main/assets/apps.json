@@ -1,10 +1,52 @@
 [
   {
+    "title": "单词大冒险",
+    "author": "何远松",
+    "image": "images/何远松_单词大冒险.png",
+    "type": "英语",
+    "url": "html/何远松_单词大冒险.html"
+  },
+  {
+    "title": "字母华容道",
+    "author": "张文睿",
+    "image": "images/张文睿_字母华容道.png",
+    "type": "英语",
+    "url": "html/张文睿_字母华容道.html"
+  },
+  {
+    "title": "股票交易所游戏",
+    "author": "何远松",
+    "image": "images/何远松_股票交易所游戏.png",
+    "type": "数学",
+    "url": "html/何远松_股票交易所游戏.html"
+  },
+  {
+    "title": "扫雷",
+    "author": "何远松",
+    "image": "images/何远松_扫雷.jpg",
+    "type": "数学",
+    "url": "html/何远松_扫雷.html"
+  },
+  {
     "title": "认识多音字",
     "author": "谢雨菲",
     "image": "images/谢雨菲_认识多音字.png",
     "type": "拼音",
     "url": "html/谢雨菲_认识多音字.html"
+  },
+  {
+    "title": "AI拼音闯关",
+    "author": "王良文",
+    "image": "images/王良文_AI拼音闯关.jpg",
+    "type": "语文",
+    "url": "html/王良文_AI拼音闯关.html"
+  },
+  {
+    "title": "高深国学谜战闯关",
+    "author": "卜莱恩",
+    "image": "images/卜莱恩_高深国学谜战闯关.png",
+    "type": "国学",
+    "url": "html/卜莱恩_高深国学谜战闯关.html"
   },
   {
     "title": "成语消消乐",
@@ -14,6 +56,20 @@
     "url": "html/马方泽_成语消消乐.html"
   },
   {
+    "title": "鸡兔同笼",
+    "author": "马楷锐",
+    "image": "images/马楷锐_鸡兔同笼.png",
+    "type": "数学",
+    "url": "html/马楷锐_鸡兔同笼.html"
+  },
+  {
+    "title": "24点游戏",
+    "author": "张文睿",
+    "image": "images/张文睿_24点游戏.jpg",
+    "type": "数学",
+    "url": "html/张文睿_24点游戏.html"
+  },
+  {
     "title": "二十四节气自然探索",
     "author": "何远皓",
     "image": "images/何远皓_二十四节气自然探索.jpg",
@@ -21,11 +77,46 @@
     "url": "html/何远皓_二十四节气自然探索.html"
   },
   {
+    "title": "AI足球教练",
+    "author": "彭斯睿",
+    "image": "images/彭斯睿_AI足球教练.png",
+    "type": "足球",
+    "url": "html/彭斯睿_AI足球教练.html"
+  },
+  {
     "title": "四大名著",
     "author": "余思成",
     "image": "images/余思成_四大名著.png",
     "type": "文学",
     "url": "html/余思成_四大名著.html"
+  },
+  {
+    "title": "石头剪刀布大战",
+    "author": "张淇竣",
+    "image": "images/张淇竣_石头剪刀布大战.jpg",
+    "type": "科学",
+    "url": "html/张淇竣_石头剪刀布大战.html"
+  },
+  {
+    "title": "15秒文明",
+    "author": "卜莱恩汪玥彤",
+    "image": "images/卜莱恩汪玥彤_15秒文明.png",
+    "type": "地理",
+    "url": "html/卜莱恩汪玥彤_15秒文明.html"
+  },
+  {
+    "title": "趣味24点",
+    "author": "郑峻博",
+    "image": "images/郑峻博_趣味24点.png",
+    "type": "数学",
+    "url": "html/郑峻博_趣味24点.html"
+  },
+  {
+    "title": "数学贪吃蛇",
+    "author": "何远松",
+    "image": "images/何远松_数学贪吃蛇.jpg",
+    "type": "数学",
+    "url": "html/何远松_数学贪吃蛇.html"
   },
   {
     "title": "经典诗词",
@@ -40,5 +131,19 @@
     "image": "images/王子铭_成语猜一猜.png",
     "type": "成语",
     "url": "html/王子铭_成语猜一猜.html"
+  },
+  {
+    "title": "英国最火猜单词",
+    "author": "刘玥瑛",
+    "image": "images/刘玥瑛_英国最火猜单词.png",
+    "type": "英语",
+    "url": "html/刘玥瑛_英国最火猜单词.html"
+  },
+  {
+    "title": "天空攀登数学游戏",
+    "author": "张子麦",
+    "image": "images/张子麦_天空攀登数学游戏.png",
+    "type": "数学",
+    "url": "html/张子麦_天空攀登数学游戏.html"
   }
 ]

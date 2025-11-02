@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" 
+        android:maxSdkVersion="32" />
 
     <application
         android:allowBackup="true"
@@ -18,6 +21,18 @@
         <activity
             android:name=".WebActivity"
             android:exported="false"
+            android:theme="@style/Theme.HTMLViewer" />
+        
+        <activity
+            android:name=".activity.MentalHealingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.HTMLViewer" />
+        
+        <activity
+            android:name=".activity.VoiceRecordsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.HTMLViewer" />
             
         <activity

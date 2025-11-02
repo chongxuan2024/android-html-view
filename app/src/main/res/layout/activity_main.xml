@@ -88,6 +88,27 @@
 
                 </LinearLayout>
 
+                <!-- Mental Healing Icon -->
+                <FrameLayout
+                    android:id="@+id/mentalHealingIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/mental_healing_icon_bg"
+                    android:padding="8dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🌳"
+                        android:textSize="20sp"
+                        android:layout_gravity="center" />
+
+                </FrameLayout>
+
                 <!-- Profile/Home Icon -->
                 <FrameLayout
                     android:id="@+id/profileIcon"

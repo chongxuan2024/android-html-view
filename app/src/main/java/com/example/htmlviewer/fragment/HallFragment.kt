@@ -1,6 +1,7 @@
 package com.example.htmlviewer.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -122,8 +123,35 @@ class HallFragment : Fragment() {
     }
     
     private fun openWebActivity(appItem: AppItem) {
-        val intent = WebActivity.newIntent(requireContext(), appItem)
-        startActivity(intent)
+        // 检查是否是原生Activity
+        if (appItem.url.startsWith("activity://")) {
+            val activityName = appItem.url.substringAfter("activity://")
+            openNativeActivity(activityName)
+        } else {
+            // 打开WebActivity
+            val intent = WebActivity.newIntent(requireContext(), appItem)
+            startActivity(intent)
+        }
+    }
+    
+    private fun openNativeActivity(activityName: String) {
+        try {
+            val intent = when (activityName) {
+                "MentalHealingActivity" -> {
+                    Intent(requireContext(), 
+                        Class.forName("com.example.htmlviewer.activity.MentalHealingActivity"))
+                }
+                else -> {
+                    // 如果找不到对应的Activity，显示错误
+                    showError("未知的Activity: $activityName")
+                    return
+                }
+            }
+            startActivity(intent)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            showError("打开Activity失败: ${e.message}")
+        }
     }
     
     override fun onResume() {

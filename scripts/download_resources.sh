@@ -41,7 +41,7 @@ echo "=================================================="
 cd "$PROJECT_ROOT"
 
 # 执行Python下载脚本
-$PYTHON_CMD "$SCRIPT_DIR/download_resources.py"
+#$PYTHON_CMD "$SCRIPT_DIR/download_resources.py"
 
 # 检查执行结果
 if [ $? -eq 0 ]; then
