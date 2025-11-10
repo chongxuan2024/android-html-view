@@ -54,22 +54,6 @@ class MainActivity : AppCompatActivity() {
                 loadProfileFragment()
             }
         }
-        
-        // Setup mental healing icon click listener
-        binding.mentalHealingIcon.setOnClickListener {
-            openMentalHealingActivity()
-        }
-    }
-    
-    private fun openMentalHealingActivity() {
-        try {
-            val intent = android.content.Intent(this, 
-                Class.forName("com.example.htmlviewer.activity.MentalHealingActivity"))
-            startActivity(intent)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            android.widget.Toast.makeText(this, "无法打开心灵树洞", android.widget.Toast.LENGTH_SHORT).show()
-        }
     }
     
     private fun updateIcon() {
